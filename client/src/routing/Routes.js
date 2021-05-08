@@ -2,19 +2,19 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 // Layout
 import NotFound from '../layout/NotFound';
-// Views
-import Register from '../views/auth/Register';
-import Login from '../views/auth/Login.js';
-import Dashboard from '../views/dashboard/Dashboard';
-import Profiles from '../views/profiles/Profiles';
-import Profile from '../views/profile/Profile';
-import Posts from '../views/posts/Posts';
-import Post from '../views/post/Post';
-//Forms
-import ProfileForm from '../forms/profile-forms/ProfileForm';
-import AddExperience from '../forms/profile-forms/AddExperience';
-import AddEducation from '../forms/profile-forms/AddEducation';
 import Landing from 'layout/Landing';
+// Views
+import Register from 'views/auth/Register';
+import Login from 'views/auth/Login.js';
+import Dashboard from 'views/dashboard/Dashboard';
+import Profiles from 'views/profiles/Profiles';
+import Profile from 'views/profile/Profile';
+import Posts from 'views/posts/Posts';
+import Post from 'views/post/Post';
+//Forms
+import ProfileForm from 'forms/profile-forms/ProfileForm';
+import AddExperience from 'forms/profile-forms/AddExperience';
+import AddEducation from 'forms/profile-forms/AddEducation';
 
 import PrivateRoute from './PrivateRoute';
 

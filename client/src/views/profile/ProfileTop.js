@@ -28,7 +28,7 @@ const ProfileTop = ({
   return (
     <div className={classes.profile}>
       <div>
-        <img src={avatar} alt="..." className={imageClasses} />
+        <img src={avatar} alt="profile_img" className={imageClasses} />
       </div>
       <div className={classes.name}>
         <h1 className={classes.title}>{name}</h1>

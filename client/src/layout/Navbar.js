@@ -15,7 +15,7 @@ const Navbar = ({ auth: { isAuthenticated } }) => {
       brand="TheallTN"
       links={isAuthenticated ? <AuthLinks /> : <GuestLinks />}
       changeColorOnScroll={{
-        height: 200,
+        height: 400,
         color: 'dark',
       }}
     />
