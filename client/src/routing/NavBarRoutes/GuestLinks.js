@@ -13,6 +13,11 @@ const GuestLinks = () => {
   const classes = useStyles();
   const guestLinksList = [
     {
+      link: '/about',
+      icon: <LineStyle className={classes.icons} />,
+      title: 'About ME',
+    },
+    {
       link: '/register',
       icon: <LineStyle className={classes.icons} />,
       title: 'Register',

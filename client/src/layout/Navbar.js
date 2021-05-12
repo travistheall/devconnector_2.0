@@ -11,15 +11,16 @@ const Navbar = ({ auth: { isAuthenticated } }) => {
   return (
     <Header
       fixed
-      color='dark'
+      color="transparent"
       brand="TheallTN"
       links={isAuthenticated ? <AuthLinks /> : <GuestLinks />}
+      changeColorOnScroll={{ color: 'dark', height: 100 }}
     />
   );
 };
 
 Navbar.propTypes = {
-  logout: PropTypes.func.isRequired,
+  logout: PropTypes.func,
   auth: PropTypes.object.isRequired
 };
 

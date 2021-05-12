@@ -15,19 +15,15 @@ const MyAlert = ({ alerts }) => {
   return alerts.map((alert, index) => (
     <Snackbar
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
+        vertical: 'bottom',
+        horizontal: 'center'
       }}
       open={open}
       autoHideDuration={5000}
       onClose={handleClose}
       key={`altert-${index}`}
     >
-      <Alert
-        severity={alert.alertType}
-        variant="filled"
-        onClose={handleClose}
-      >
+      <Alert severity={alert.alertType} variant="filled" onClose={handleClose}>
         {alert.msg}
       </Alert>
     </Snackbar>
@@ -35,11 +31,11 @@ const MyAlert = ({ alerts }) => {
 };
 
 MyAlert.propTypes = {
-  alerts: PropTypes.array.isRequired,
+  alerts: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  alerts: state.alert,
+  alerts: state.alert
 });
 
 export default connect(mapStateToProps)(MyAlert);

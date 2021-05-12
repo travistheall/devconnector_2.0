@@ -8,6 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "animate.css": "^4.1.1",
     "classnames": "^2.3.1",
+    "emailjs-com": "^2.6.4",
     "history": "^5.0.0",
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",
