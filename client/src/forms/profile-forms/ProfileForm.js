@@ -1,8 +1,47 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { forwardRef, useState, useEffect, Fragment } from 'react';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { makeStyles } from '@material-ui/core/styles';
+import Slide from '@material-ui/core/Slide';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+
+import GridContainer from 'components/Grid/GridContainer.js';
+// @material-ui/icons
+import Close from '@material-ui/icons/Close';
+// core components
+import Button from 'components/CustomButtons/Button.js';
+import Card from 'components/Card/Card.js';
+import CardHeader from 'components/Card/CardHeader.js';
+import CardBody from 'components/Card/CardBody.js';
+import CustomInput from 'components/CustomInput/CustomInput.js';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import InputAdornment from '@material-ui/core/InputAdornment';
+import modalStyle from "assets/jss/material-kit-pro-react/modalStyle.js";
+
+const style = theme => ({
+  ...modalStyle(theme),
+  modalRootExample: {
+    "& > div:first-child": {
+      display: "none"
+    },
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
+  }
+});
+
+const useStyles = makeStyles(style);
+
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
 
 const initialState = {
   company: '',
@@ -25,6 +64,7 @@ const ProfileForm = ({
   getCurrentProfile,
   history
 }) => {
+  const classes = useStyles();
   const [formData, setFormData] = useState(initialState);
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
@@ -60,185 +100,373 @@ const ProfileForm = ({
     instagram
   } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     createProfile(formData, history, profile ? true : false);
   };
 
+  const [editProModal, setEditProModal] = useState(false);
+
   return (
-    <Fragment>
-      <h1 className="large text-primary">Edit Your Profile</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Add some changes to your profile
-      </p>
-      <small>* = required field</small>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <select name="status" value={status} onChange={onChange}>
-            <option>* Select Professional Status</option>
-            <option value="Developer">Developer</option>
-            <option value="Junior Developer">Junior Developer</option>
-            <option value="Senior Developer">Senior Developer</option>
-            <option value="Manager">Manager</option>
-            <option value="Student or Learning">Student or Learning</option>
-            <option value="Instructor">Instructor or Teacher</option>
-            <option value="Intern">Intern</option>
-            <option value="Other">Other</option>
-          </select>
-          <small className="form-text">
-            Give us an idea of where you are at in your career
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Company"
-            name="company"
-            value={company}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            Could be your own company or one you work for
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Website"
-            name="website"
-            value={website}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            Could be your own or a company website
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Location"
-            name="location"
-            value={location}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            City & state suggested (eg. Boston, MA)
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="* Skills"
-            name="skills"
-            value={skills}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Github Username"
-            name="githubusername"
-            value={githubusername}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            If you want your latest repos and a Github link, include your
-            username
-          </small>
-        </div>
-        <div className="form-group">
-          <textarea
-            placeholder="A short bio of yourself"
-            name="bio"
-            value={bio}
-            onChange={onChange}
-          />
-          <small className="form-text">Tell us a little about yourself</small>
-        </div>
-
-        <div className="my-2">
-          <button
-            onClick={() => toggleSocialInputs(!displaySocialInputs)}
-            type="button"
-            className="btn btn-light"
+    <div>
+      <Button color="primary" size="sm" onClick={() => setEditProModal(true)}>
+        Edit Profile
+      </Button>
+      <Dialog
+        classes={{
+          root: `${classes.modalRoot} ${classes.modalRootExample}`,
+          paper: classes.modal
+        }}
+        open={editProModal}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={() => setEditProModal(false)}
+        aria-labelledby="classic-modal-slide-title"
+        aria-describedby="classic-modal-slide-description"
+      >
+        <Card plain className={classes.modalLoginCard}>
+          <DialogTitle
+            id="classic-modal-slide-title"
+            disableTypography
+            className={classes.modalHeader}
           >
-            Add Social Network Links
-          </button>
-          <span>Optional</span>
-        </div>
-
-        {displaySocialInputs && (
-          <Fragment>
-            <div className="form-group social-input">
-              <i className="fab fa-twitter fa-2x" />
-              <input
-                type="text"
-                placeholder="Twitter URL"
-                name="twitter"
-                value={twitter}
-                onChange={onChange}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-facebook fa-2x" />
-              <input
-                type="text"
-                placeholder="Facebook URL"
-                name="facebook"
-                value={facebook}
-                onChange={onChange}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-youtube fa-2x" />
-              <input
-                type="text"
-                placeholder="YouTube URL"
-                name="youtube"
-                value={youtube}
-                onChange={onChange}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-linkedin fa-2x" />
-              <input
-                type="text"
-                placeholder="Linkedin URL"
-                name="linkedin"
-                value={linkedin}
-                onChange={onChange}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-instagram fa-2x" />
-              <input
-                type="text"
-                placeholder="Instagram URL"
-                name="instagram"
-                value={instagram}
-                onChange={onChange}
-              />
-            </div>
-          </Fragment>
-        )}
-
-        <input type="submit" className="btn btn-primary my-1" />
-        <Link className="btn btn-light my-1" to="/dashboard">
-          Go Back
-        </Link>
-      </form>
-    </Fragment>
+            <CardHeader
+              plain
+              color="primary"
+              className={`${classes.textCenter} ${classes.cardLoginHeader}`}
+            >
+              <Button
+                simple
+                className={classes.modalCloseButton}
+                key="close"
+                aria-label="Close"
+                onClick={() => setEditProModal(false)}
+              >
+                {' '}
+                <Close className={classes.modalClose} />
+              </Button>
+              <h4 className={classes.cardTitleWhitee}>Edit Your Profile</h4>
+            </CardHeader>
+          </DialogTitle>
+          <form onSubmit={onSubmit}>
+            <DialogContent
+              id="classic-modal-slide-description"
+              className={classes.modalBody}
+            >
+              <CardBody className={classes.cardLoginBody}>
+                <p className={`${classes.description} ${classes.textCenter}`}>
+                  <i className="fas fa-code-branch" />
+                  <i className="fas fa-user" /> Add some changes to your profile
+                  <br />
+                  <small>* = required field</small>
+                </p>
+                <FormControl fullWidth className={classes.selectFormControl}>
+                  <InputLabel htmlFor="status" className={classes.selectLabel}>
+                    Single Select
+                  </InputLabel>
+                  <Select
+                    MenuProps={{
+                      className: classes.selectMenu
+                    }}
+                    classes={{
+                      select: classes.select
+                    }}
+                    value={status}
+                    onChange={onChange}
+                    inputProps={{
+                      name: 'status',
+                      id: 'status'
+                    }}
+                  >
+                    <MenuItem
+                      disabled
+                      classes={{
+                        root: classes.selectMenuItem
+                      }}
+                    >
+                      * Select Professional Status
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Developer"
+                    >
+                      Developer
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Junior Developer"
+                    >
+                      Junior Developer
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Senior Developer"
+                    >
+                      Senior Developer
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Manager"
+                    >
+                      Manager
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Student or Learning"
+                    >
+                      Student or Learning
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Instructor or Teacher"
+                    >
+                      Instructor or Teacher
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Intern"
+                    >
+                      Intern
+                    </MenuItem>
+                    <MenuItem
+                      classes={{
+                        root: classes.selectMenuItem,
+                        selected: classes.selectMenuItemSelected
+                      }}
+                      value="Other"
+                    >
+                      Other
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+                <CustomInput
+                  id="company"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: '* Company',
+                    type: 'text',
+                    name: 'company',
+                    value: company,
+                    onChange: onChange
+                  }}
+                />
+                <CustomInput
+                  id="website"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type: 'text',
+                    name: 'website',
+                    value: website,
+                    onChange: onChange,
+                    placeholder: '* Website'
+                  }}
+                />
+                <CustomInput
+                  id="Location"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: '* Location',
+                    type: 'text',
+                    name: 'location',
+                    value: location,
+                    onChange: onChange
+                  }}
+                />
+                <CustomInput
+                  id="Skills"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: '* Skills',
+                    type: 'text',
+                    name: 'skills',
+                    value: skills,
+                    onChange: onChange
+                  }}
+                />
+                <small className="form-text">
+                  Please use comma separated values (eg.
+                  HTML,CSS,JavaScript,PHP)
+                </small>
+                <CustomInput
+                  id="githubusername"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: 'Github Username',
+                    type: 'text',
+                    name: 'githubusername',
+                    value: githubusername,
+                    onChange: onChange
+                  }}
+                />
+                <CustomInput
+                  id="bio"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: 'A short bio of yourself',
+                    type: 'text',
+                    name: 'bio',
+                    value: bio,
+                    onChange: onChange
+                  }}
+                />
+                <GridContainer justify="center">
+                  <Button
+                    onClick={() => toggleSocialInputs(!displaySocialInputs)}
+                    size="sm"
+                    round
+                  >
+                    Add Social Network Links
+                  </Button>
+                </GridContainer>
+                {displaySocialInputs && (
+                  <Fragment>
+                    <CustomInput
+                      id="twitter"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        placeholder: 'Twitter URL',
+                        type: 'text',
+                        name: 'twitter',
+                        value: twitter,
+                        onChange: onChange,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fab fa-twitter fa-2x" />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <CustomInput
+                      id="facebook"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        placeholder: 'Facebook URL',
+                        type: 'text',
+                        name: 'facebook',
+                        value: facebook,
+                        onChange: onChange,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fab fa-facebook fa-2x" />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <CustomInput
+                      id="youtube"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        placeholder: 'Youtube URL',
+                        type: 'text',
+                        name: 'youtube',
+                        value: youtube,
+                        onChange: onChange,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fab fa-youtube fa-2x" />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <CustomInput
+                      id="linkedin"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        placeholder: 'Linkedin URL',
+                        type: 'text',
+                        name: 'linkedin',
+                        value: linkedin,
+                        onChange: onChange,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fab fa-linkedin fa-2x" />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <CustomInput
+                      id="instagram"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        placeholder: 'Instagram URL',
+                        type: 'text',
+                        name: 'instagram',
+                        value: instagram,
+                        onChange: onChange,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fab fa-instagram fa-2x" />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  </Fragment>
+                )}
+              </CardBody>
+            </DialogContent>
+            <GridContainer justify="center">
+              <DialogActions className={classes.modalFooter}>
+                <Button color="primary" type="submit">
+                  Save changes
+                </Button>
+                <Button
+                  onClick={() => setEditProModal(false)}
+                  color="secondary"
+                >
+                  Go Back
+                </Button>
+              </DialogActions>
+            </GridContainer>
+          </form>
+        </Card>
+      </Dialog>
+    </div>
   );
 };
 
@@ -249,7 +477,7 @@ ProfileForm.propTypes = {
   history: PropTypes.object
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: state.profile
 });
 

@@ -1,43 +1,44 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExperience } from '../../actions/profile';
-import formatDate from '../../utils/formatDate';
+import { deleteExperience } from 'actions/profile';
+import formatDate from 'utils/formatDate';
+import Table from 'components/Table/Table.js';
+import Button from 'components/CustomButtons/Button.js';
+import Close from "@material-ui/icons/Close";
 
 const Experience = ({ experience, deleteExperience }) => {
-  const experiences = experience.map((exp) => (
-    <tr key={exp._id}>
-      <td>{exp.company}</td>
-      <td className="hide-sm">{exp.title}</td>
-      <td>
-        {formatDate(exp.from)} - {exp.to ? formatDate(exp.to) : 'Now'}
-      </td>
-      <td>
-        <button
-          onClick={() => deleteExperience(exp._id)}
-          className="btn btn-danger"
-        >
-          Delete
-        </button>
-      </td>
-    </tr>
-  ));
+  const simpleButtons = (exp) => [{ color: 'danger', icon: Close }].map((prop, key) => {
+    return (
+      <Button
+        simple
+        justIcon
+        size="sm"
+        color={prop.color}
+        key={key}
+        onClick={() => deleteExperience(exp._id)}
+      >
+        <prop.icon />
+      </Button>
+    );
+  });
+
+  const experiences = experience.map((exp) => [
+    exp.company,
+    exp.title,
+    `${formatDate(exp.from)} - ${exp.to ? formatDate(exp.to) : 'Now'}`,
+    simpleButtons(exp)
+  ]);
 
   return (
-    <Fragment>
-      <h2 className="my-2">Experience Credentials</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th className="hide-sm">Title</th>
-            <th className="hide-sm">Years</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>{experiences}</tbody>
-      </table>
-    </Fragment>
+
+      <Table
+        tableHead={['Company', 'Title', 'Years', '']}
+        tableData={experiences}
+        striped
+      />
+
+
   );
 };
 

@@ -1,43 +1,43 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteEducation } from '../../actions/profile';
-import formatDate from '../../utils/formatDate';
+import { deleteEducation } from 'actions/profile';
+
+import formatDate from 'utils/formatDate';
+import Button from 'components/CustomButtons/Button.js';
+import Close from '@material-ui/icons/Close';
+import Table from 'components/Table/Table.js';
 
 const Education = ({ education, deleteEducation }) => {
-  const educations = education.map((edu) => (
-    <tr key={edu._id}>
-      <td>{edu.school}</td>
-      <td className="hide-sm">{edu.degree}</td>
-      <td>
-        {formatDate(edu.from)} - {edu.to ? formatDate(edu.to) : 'Now'}
-      </td>
-      <td>
-        <button
+  const simpleButton = (edu) =>
+    [{ color: 'danger', icon: Close }].map((prop, key) => {
+      return (
+        <Button
+          simple
+          justIcon
+          size="sm"
+          color={prop.color}
+          key={key}
           onClick={() => deleteEducation(edu._id)}
-          className="btn btn-danger"
         >
-          Delete
-        </button>
-      </td>
-    </tr>
-  ));
+          <prop.icon />
+        </Button>
+      );
+    });
+
+  const educations = education.map((edu) => [
+    edu.school,
+    edu.degree,
+    `${formatDate(edu.from)} - ${edu.to ? formatDate(edu.to) : 'Now'}`,
+    simpleButton(edu)
+  ]);
 
   return (
-    <Fragment>
-      <h2 className="my-2">Education Credentials</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>School</th>
-            <th className="hide-sm">Degree</th>
-            <th className="hide-sm">Years</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>{educations}</tbody>
-      </table>
-    </Fragment>
+    <Table
+      tableHead={['School', 'Degree', 'Years', '']}
+      tableData={educations}
+      striped
+    />
   );
 };
 

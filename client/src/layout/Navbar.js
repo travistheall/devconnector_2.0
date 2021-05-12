@@ -11,13 +11,9 @@ const Navbar = ({ auth: { isAuthenticated } }) => {
   return (
     <Header
       fixed
-      color="transparent"
+      color='dark'
       brand="TheallTN"
       links={isAuthenticated ? <AuthLinks /> : <GuestLinks />}
-      changeColorOnScroll={{
-        height: 400,
-        color: 'dark',
-      }}
     />
   );
 };
