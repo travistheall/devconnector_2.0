@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Spinner from 'layout/Spinner';
+
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 import Parallax from 'components/Parallax/Parallax.js';
 // sections for this page
-import SectionPills from "./Sections/SectionPills.js";
+import SectionPills from './Sections/SectionPills.js';
 import CreatePost from 'forms/post/CreatePost';
 import bg10 from 'assets/img/bg10.jpg';
 import blogPostsPageStyle from 'assets/jss/material-kit-pro-react/views/blogPostsPageStyle.js';
 
 const useStyles = makeStyles(blogPostsPageStyle);
 
-const Posts = () => {
+const Posts = ({ auth: { isAuthenticated, loading } }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -35,7 +39,13 @@ const Posts = () => {
       </Parallax>
       <div className={classes.main}>
         <div className={classes.container}>
-          <CreatePost />
+          {loading ? (
+            <Spinner />
+          ) : isAuthenticated ? (
+            <CreatePost />
+          ) : (
+            <Fragment />
+          )}
           <SectionPills />
         </div>
       </div>
@@ -43,4 +53,11 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+Posts.propTypes = {
+  auth: PropTypes.object.isRequired,
+  component: PropTypes.component
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+export default connect(mapStateToProps)(Posts);

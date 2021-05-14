@@ -14,12 +14,10 @@ import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
-import Add from '@material-ui/icons/Add';
+
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 import Parallax from 'components/Parallax/Parallax.js';
-import Clearfix from 'components/Clearfix/Clearfix.js';
 import Button from 'components/CustomButtons/Button.js';
 
 import NavPills from 'components/NavPills/NavPills.js';

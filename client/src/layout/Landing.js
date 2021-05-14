@@ -41,11 +41,11 @@ const Landing = ({ isAuthenticated }) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <Button type="button" color="info" href="/register">
-                  Sign Up
+                <Button type="button" color="primary" href="/about">
+                  About Me
                 </Button>
-                <Button type="button" href="/login">
-                  Log in
+                <Button type="button" color="info" href="/posts">
+                  Posts
                 </Button>
               </div>
             </GridItem>
