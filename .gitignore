@@ -6,3 +6,4 @@ client/build
 _resources/
 client/.eslintcache
 .vscode/
+.env
