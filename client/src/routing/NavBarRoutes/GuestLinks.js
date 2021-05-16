@@ -15,17 +15,7 @@ const GuestLinks = () => {
     {
       link: '/about',
       icon: <LineStyle className={classes.icons} />,
-      title: 'About ME',
-    },
-    {
-      link: '/register',
-      icon: <LineStyle className={classes.icons} />,
-      title: 'Register',
-    },
-    {
-      link: '/login',
-      icon: <LineStyle className={classes.icons} />,
-      title: 'Login',
+      title: 'About Me',
     },
   ];
   return (

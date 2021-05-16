@@ -44,9 +44,6 @@ const Landing = ({ isAuthenticated }) => {
                 <Button type="button" color="primary" href="/about">
                   About Me
                 </Button>
-                <Button type="button" color="info" href="/posts">
-                  Posts
-                </Button>
               </div>
             </GridItem>
           </GridContainer>
