@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "client": "yarn start --prefix client",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn install --prefix client && yarn build --prefix client"
   },
   "author": "Travis Theall",
   "license": "MIT",

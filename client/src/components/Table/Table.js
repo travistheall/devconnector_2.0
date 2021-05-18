@@ -1,34 +1,35 @@
-import React from "react";
-import cx from "classnames";
-import PropTypes from "prop-types";
-
+import React from 'react';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+// Rows
+import RetRow from './Row/RetRow';
+import PropTotalRow from './Row/PropTotalRow';
+import PropPurchaseRow from './Row/PropPurchaseRow';
 
-import styles from "assets/jss/material-kit-pro-react/components/tableStyle.js";
+import styles from 'assets/jss/material-kit-pro-react/components/tableStyle.js';
 
 const useStyles = makeStyles(styles);
-
-export default function CustomTable(props) {
-  const {
-    tableHead,
-    tableData,
-    tableHeaderColor,
-    hover,
-    colorsColls,
-    coloredColls,
-    customCellClasses,
-    customClassesForCells,
-    striped,
-    tableShopping,
-    customHeadCellClasses,
-    customHeadClassesForCells
-  } = props;
+export default function CustomTable({
+  tableHead,
+  tableBody,
+  tableHeaderColor,
+  hover,
+  colorsColls,
+  coloredColls,
+  customCellClasses,
+  customClassesForCells,
+  striped,
+  tableShopping,
+  customHeadCellClasses,
+  customHeadClassesForCells
+}) {
   const classes = useStyles();
   return (
     <div className={classes.tableResponsive}>
@@ -39,9 +40,9 @@ export default function CustomTable(props) {
               {tableHead.map((prop, key) => {
                 const tableCellClasses =
                   classes.tableHeadCell +
-                  " " +
+                  ' ' +
                   classes.tableCell +
-                  " " +
+                  ' ' +
                   cx({
                     [customHeadCellClasses[
                       customHeadClassesForCells.indexOf(key)
@@ -58,98 +59,53 @@ export default function CustomTable(props) {
           </TableHead>
         ) : null}
         <TableBody>
-          {tableData.map((prop, key) => {
-            var rowColor = "";
+          {tableBody.map((row, ind) => {
+            var rowColor = '';
             var rowColored = false;
-            if (prop.color !== undefined) {
-              rowColor = prop.color;
+            if (row.color !== undefined) {
+              rowColor = row.color;
               rowColored = true;
-              prop = prop.data;
+              row = row.data;
             }
             const tableRowClasses = cx({
               [classes.tableRowHover]: hover,
-              [classes[rowColor + "Row"]]: rowColored,
-              [classes.tableStripedRow]: striped && key % 2 === 0
+              [classes[rowColor + 'Row']]: rowColored,
+              [classes.tableStripedRow]: striped && ind % 2 === 0
             });
-            if (prop.total) {
+            if (row.total) {
               return (
-                <TableRow key={key} hover={hover} className={tableRowClasses}>
-                  <TableCell
-                    className={classes.tableCell}
-                    colSpan={prop.colspan}
-                  />
-                  <TableCell
-                    className={classes.tableCell + " " + classes.tableCellTotal}
-                  >
-                    Total
-                  </TableCell>
-                  <TableCell
-                    className={
-                      classes.tableCell + " " + classes.tableCellAmount
-                    }
-                  >
-                    {prop.amount}
-                  </TableCell>
-                  {tableHead.length - (prop.colspan - 0 + 2) > 0 ? (
-                    <TableCell
-                      className={classes.tableCell}
-                      colSpan={tableHead.length - (prop.colspan - 0 + 2)}
-                    />
-                  ) : null}
-                </TableRow>
+                <PropTotalRow
+                  key={ind}
+                  hover={hover}
+                  tableHead={tableHead}
+                  tableRowClasses={tableRowClasses}
+                  classes={classes}
+                  prop={row}
+                />
               );
             }
-            if (prop.purchase) {
+            if (row.purchase) {
               return (
-                <TableRow key={key} hover={hover} className={tableRowClasses}>
-                  <TableCell
-                    className={classes.tableCell}
-                    colSpan={prop.colspan}
-                  />
-                  <TableCell
-                    className={classes.tableCell + " " + classes.tableCellTotal}
-                  >
-                    Total
-                  </TableCell>
-                  <TableCell
-                    className={
-                      classes.tableCell + " " + classes.tableCellAmount
-                    }
-                  >
-                    {prop.amount}
-                  </TableCell>
-                  <TableCell
-                    className={classes.tableCell + " " + classes.right}
-                    colSpan={prop.col.colspan}
-                  >
-                    {prop.col.text}
-                  </TableCell>
-                </TableRow>
+                <PropPurchaseRow
+                  key={ind}
+                  hover={hover}
+                  tableRowClasses={tableRowClasses}
+                  classes={classes}
+                  prop={row}
+                />
               );
             }
             return (
-              <TableRow
-                key={key}
+              <RetRow
+                key={ind}
+                row={row}
+                colorsColls={colorsColls}
                 hover={hover}
-                className={classes.tableRow + " " + tableRowClasses}
-              >
-                {prop.map((prop, key) => {
-                  const tableCellClasses =
-                    classes.tableCell +
-                    " " +
-                    cx({
-                      [classes[colorsColls[coloredColls.indexOf(key)]]]:
-                        coloredColls.indexOf(key) !== -1,
-                      [customCellClasses[customClassesForCells.indexOf(key)]]:
-                        customClassesForCells.indexOf(key) !== -1
-                    });
-                  return (
-                    <TableCell className={tableCellClasses} key={key}>
-                      {prop}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
+                tableRowClasses={tableRowClasses}
+                customCellClasses={customCellClasses}
+                coloredColls={coloredColls}
+                customClassesForCells={customClassesForCells}
+              />
             );
           })}
         </TableBody>
@@ -159,7 +115,7 @@ export default function CustomTable(props) {
 }
 
 CustomTable.defaultProps = {
-  tableHeaderColor: "gray",
+  tableHeaderColor: 'gray',
   hover: false,
   colorsColls: [],
   coloredColls: [],
@@ -172,17 +128,17 @@ CustomTable.defaultProps = {
 
 CustomTable.propTypes = {
   tableHeaderColor: PropTypes.oneOf([
-    "warning",
-    "primary",
-    "danger",
-    "success",
-    "info",
-    "rose",
-    "gray"
+    'warning',
+    'primary',
+    'danger',
+    'success',
+    'info',
+    'rose',
+    'gray'
   ]),
   tableHead: PropTypes.arrayOf(PropTypes.string),
+  tableBody: PropTypes.arrayOf(PropTypes.object),
   // Of(PropTypes.arrayOf(PropTypes.node)) || Of(PropTypes.object),
-  tableData: PropTypes.array,
   hover: PropTypes.bool,
   coloredColls: PropTypes.arrayOf(PropTypes.number),
   // Of(["warning","primary","danger","success","info","rose","gray"]) - colorsColls

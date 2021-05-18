@@ -13,7 +13,7 @@ import Posts from 'views/posts/Posts';
 import Post from 'views/post/Post';
 import ExamplePost from 'views/post/ExamplePost';
 import AboutMe from 'views/about_me/AboutMe';
-
+import Food from 'views/food/Food';
 //import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
@@ -29,6 +29,7 @@ const Routes = () => {
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/posts" component={Posts} />
       <Route exact path="/posts/:id" component={Post} />
+      <Route exact path="/food" component={Food} />
       <Route component={NotFound} />
     </Switch>
   );
