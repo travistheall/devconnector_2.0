@@ -5,7 +5,7 @@ const Food = require('../../models/Food');
 
 // @route    POST api/foods
 // @desc     Create a foods
-// @access   Publict
+// @access   Public
 router.post('/', async (req, res) => {
   try {
     const food = await Food.findOne({ Code: req.body.Code });
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 
 // @route    Get api/foodnut
 // @desc     Create a foodnut
-// @access   Publict
+// @access   Public
 router.get('/', async (req, res) => {
     try {
       const foodnut = await FoodNut.find();
