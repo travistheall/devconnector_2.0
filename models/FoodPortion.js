@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const FoodPortionSchema = new Schema({
-  Food: {
+  food: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'food'
   },
+  SubCodeDesc: { type: String },
+  SeqNum: { type: Number, required: true },
   Desc: { type: String, required: true },
-  Val: { type: Number, required: true },
-  Unit: { type: String, required: true },
+  Weight: { type: Number, required: true },
 });
 module.exports = mongoose.model('foodportion', FoodPortionSchema);

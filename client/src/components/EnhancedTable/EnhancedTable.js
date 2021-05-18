@@ -158,8 +158,8 @@ const EnhancedTable = ({rows}) => {
                         {row['Code']}
                       </TableCell>
                       <TableCell align="right">{row['Desc']}</TableCell>
-                      <TableCell align="right">{row['CatNum']}</TableCell>
-                      <TableCell align="right">{row['CatDesc']}</TableCell>
+                      <TableCell align="right">{row["WWEIA_Cat_Num"]}</TableCell>
+                      <TableCell align="right">{row["WWEIA_Cat_Desc"]}</TableCell>
                       <TableCell align="right">{row['AddDescs']}</TableCell>
                     </TableRow>
                   );

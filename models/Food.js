@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 const FoodSchema = new Schema({
   Code: { type: Number, unique: true, required: true },
   Desc: { type: String, required: true },
-  CatNum: { type: Number, required: true },
-  CatDesc: { type: String, required: true },
-  AddDescs: { type: String }
+  WWEIA_Cat_Num: { type: Number, required: true },
+  WWEIA_Cat_Desc: { type: String, required: true }
 });
-FoodSchema.index({'Desc': 'text', 'CatDesc': 'text', 'AddDescs': 'text', 'Code': 'number',  'CatNum': 'number',});
+FoodSchema.index({'Desc': 'text', 'CatDesc': 'text'});
 module.exports = mongoose.model('food', FoodSchema);
