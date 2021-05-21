@@ -7,8 +7,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
-
-const EnhancedTableHead = ({
+const FoodTableHead = ({
   headCells,
   classes,
   onSelectAllClick,
@@ -29,7 +28,7 @@ const EnhancedTableHead = ({
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': 'select all foods' }}
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -58,7 +57,7 @@ const EnhancedTableHead = ({
   );
 };
 
-EnhancedTableHead.propTypes = {
+FoodTableHead.propTypes = {
   headCells: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
@@ -68,4 +67,4 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired
 };
-export default EnhancedTableHead;
+export default FoodTableHead;

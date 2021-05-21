@@ -15,6 +15,7 @@ import ExamplePost from 'views/post/ExamplePost';
 import AboutMe from 'views/about_me/AboutMe';
 import Food from 'views/food/Food';
 import Dcap from 'views/dcap/dcap';
+
 //import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {

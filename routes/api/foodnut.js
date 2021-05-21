@@ -3,12 +3,11 @@ const router = express.Router();
 var mongoose = require('mongoose');
 const Food = require('../../models/Food');
 const FoodNut = require('../../models/FoodNut');
-const checkObjectId = require('../../middleware/checkObjectId');
 
 // @route    POST api/foods
 // @desc     Create a foods
 // @access   Public
-router.post('/', async (req, res) => {
+router.post('/create/', async (req, res) => {
   try {
     const food = await Food.findOne({ Code: req.body.Code });
     const newFoodNut = new FoodNut({
@@ -28,7 +27,7 @@ router.post('/', async (req, res) => {
 // @route    Get api/foodnut
 // @desc     Create a foodnut
 // @access   Public
-router.get('/', async (req, res) => {
+router.get('/getall/', async (req, res) => {
   try {
     const foodnut = await FoodNut.find().limit(65);
     res.json(foodnut);
@@ -41,10 +40,12 @@ router.get('/', async (req, res) => {
 // @route    Get api/foodnut
 // @desc     Create a foodnut
 // @access   Publict
-router.get('/:text', async (req, res) => {
+router.get('/foodid/:foodid', async (req, res) => {
   try {
-    const food = await Food.findOne({ Code: req.params.text });
-    const foodnut = await FoodNut.find({food: food['_id']});
+    const food = await Food.findById(req.body.foodid);
+    console.log(food)
+    const foodnut = await FoodNut.find({food: req.params.foodid});
+    console.log(foodnut)
     if (!foodnut) {
       return res.status(404).json({ msg: 'Food not found' });
     }

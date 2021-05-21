@@ -1,19 +1,19 @@
 import api from '../utils/api';
 import {
-  SEARCH_FOODS,
+    GET_PORTIONS,
 } from './types';
 
 // get foods
-export const searchFoods = (searchTerm) => async dispatch => {
+export const getFoodPortions = (foodid) => async dispatch => {
   try {
-    const res = await api.get(`/food/search/${searchTerm}`);
+    const res = await api.get(`/foodport/foodid/${foodid}`);
     dispatch({
-      type: SEARCH_FOODS,
+      type: GET_PORTIONS,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: SEARCH_FOODS,
+      type: GET_PORTIONS,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }

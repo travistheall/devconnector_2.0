@@ -7,9 +7,12 @@ import Parallax from 'components/Parallax/Parallax.js';
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 // My Sections
+//import FoodTable from './Sections/Table/FoodTable.js';
+// import CardBody from 'components/Card/CardBody';
+import { DataGrid, GridToolbar } from '@material-ui/data-grid';
+import { useDemoData } from '@material-ui/x-grid-data-generator';
 import Card from 'components/Card/Card';
 import CardHeader from 'components/Card/CardHeader';
-import CardBody from 'components/Card/CardBody';
 import CustomInput from 'components/CustomInput/CustomInput';
 import Button from 'components/CustomButtons/Button';
 //static files
@@ -18,26 +21,25 @@ import aboutUsStyle from 'assets/jss/material-kit-pro-react/views/aboutUsStyle.j
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 
-import NavPills from 'components/NavPills/NavPills';
-import SATable from './table/StandardAssigner/SATable';
-import RaterTable from './table/Rater/RaterTable';
-import ReviewerTable from './table/Reviewer/ReviewerTable';
-
-import demo from './table/Rater/json/demo.json';
-
 const useStyles = makeStyles(aboutUsStyle);
 import sectionSubscribeLineStyle from 'assets/jss/material-kit-pro-react/views/blogPostsSections/sectionSubscribeLineStyle.js';
 
 const useSubStyles = makeStyles(sectionSubscribeLineStyle);
 
-const Food = () => {
+const FoodGrid = () => {
+  const { data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 10,
+    maxColumns: 10
+  });
   const [searchTerm, setSearchTerm] = useState('');
-  const [searched, setSearched] = useState(false);
+  //const [searched, setSearched] = useState(false);
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
   const handleClick = () => {
-    setSearched(true);
+    //setSearched(true);
+    console.log('clicked');
   };
   const classes = useStyles();
   const subClasses = useSubStyles();
@@ -47,8 +49,8 @@ const Food = () => {
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem
-              md={12}
-              sm={12}
+              md={8}
+              sm={8}
               className={classNames(
                 classes.mlAuto,
                 classes.mrAuto,
@@ -96,35 +98,12 @@ const Food = () => {
                 </GridItem>
               </GridContainer>
             </CardHeader>
-            <GridContainer>
-              <GridItem xs={12} sm={12}>
-                <NavPills
-                  horizontal={{
-                    tabsGrid: { xs: 1 },
-                    contentGrid: { xs: 11 }
-                  }}
-                  color="rose"
-                  tabs={[
-                    {
-                      tabButton: 'Standard assigner',
-                      tabContent: searched ? (
-                        <SATable searchTerm={searchTerm} searched={searched} />
-                      ) : (
-                        <CardBody>Please Search a Food</CardBody>
-                      )
-                    },
-                    {
-                      tabButton: 'Rater',
-                      tabContent: <RaterTable rows={Object.values(demo)} />
-                    },
-                    {
-                      tabButton: 'Reviewer',
-                      tabContent: <ReviewerTable rows={Object.values(demo)} />
-                    }
-                  ]}
-                />
-              </GridItem>
-            </GridContainer>
+            <DataGrid
+              {...data}
+              components={{
+                Toolbar: GridToolbar
+              }}
+            />
           </Card>
         </div>
       </div>
@@ -132,4 +111,4 @@ const Food = () => {
   );
 };
 
-export default Food;
+export default FoodGrid;

@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Food = require('../../models/Food');
-const AddDesc = require('../../models/AddDesc');
-const { check, validationResult } = require('express-validator');
+//const { check, validationResult } = require('express-validator');
 // @route    GET api/foods
 // @desc     Get all foods
 // @access   Public
-router.get('/', async (req, res) => {
+router.get('/getall/', async (req, res) => {
   try {
     const foods = await Food.find();
     res.json(foods);
@@ -19,9 +18,9 @@ router.get('/', async (req, res) => {
 // @route    GET api/foods
 // @desc     Get all foods
 // @access   Public
-router.get('/:text', async (req, res) => {
+router.get('/search/:text', async (req, res) => {
   try {
-    const foods = await Food.find({ $text: { $search: req.params.text } });
+    const foods = await Food.find({ $text: { $search: req.params.text} });
     if (!foods) {
       return res.status(404).json({ msg: 'Food not found' });
     }
@@ -32,10 +31,23 @@ router.get('/:text', async (req, res) => {
   }
 });
 
+router.get('/id/:id', async (req, res) => {
+  try {
+    const food = await Food.findById(req.params.id);
+    if (!food) {
+      return res.status(404).json({ msg: 'Food not found' });
+    }
+    res.json(food);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    POST api/foods
 // @desc     Create a foods
 // @access   Publict
-router.post('/', async (req, res) => {
+router.post('/create/', async (req, res) => {
   try {
     const newFood = new Food({
       Code: req.body.Code,

@@ -7,8 +7,8 @@ const FoodPortionSchema = new Schema({
     ref: 'food'
   },
   SubCodeDesc: { type: String },
-  SeqNum: { type: Number, required: true },
-  Desc: { type: String, required: true },
+  PortDesc: { type: String, required: true },
   Weight: { type: Number, required: true },
 });
-module.exports = mongoose.model('foodportion', FoodPortionSchema);
+
+module.exports = mongoose.model('food_portion', FoodPortionSchema);

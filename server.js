@@ -17,7 +17,6 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/food', require('./routes/api/food'));
-app.use('/api/adddesc', require('./routes/api/adddesc'));
 app.use('/api/foodnut', require('./routes/api/foodnut'));
 app.use('/api/foodport', require('./routes/api/foodportion'));
 

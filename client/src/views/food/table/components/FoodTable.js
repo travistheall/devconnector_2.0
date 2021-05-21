@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,20 +12,23 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {stableSort, getComparator} from './utils/helperfunctions'
-import EnhancedTableToolbar from "./EnhancedTableToolbar";
-import EnhancedTableHead from "./EnhancedTableHead";
+import { stableSort, getComparator } from '../utils/helperfunctions';
+import FoodTableToolbar from './FoodTableToolbar';
+import FoodTableHead from './FoodTableHead';
+import Selecter from './Selecter';
+
+import styles from 'assets/jss/material-kit-pro-react/components/tableStyle.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: '100%'
   },
   paper: {
     width: '100%',
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
   table: {
-    minWidth: 750,
+    minWidth: 750
   },
   visuallyHidden: {
     border: 0,
@@ -36,14 +39,14 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     position: 'absolute',
     top: 20,
-    width: 1,
-  },
+    width: 1
+  }
 }));
 
-const EnhancedTable = ({rows}) => {
-  const classes = useStyles();
+const FoodTable = ({ headCells, rows }) => {
+  const classes = useStyles(styles);
   const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('calories');
+  const [orderBy, setOrderBy] = useState('Code');
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
@@ -102,18 +105,10 @@ const EnhancedTable = ({rows}) => {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-  const headCells = [
-    { id: 'Code', numeric: true, disablePadding: true, label: 'Food Code' },
-    { id: 'Desc', numeric: false, disablePadding: false, label: 'Description' },
-    { id: 'CatNum', numeric: true, disablePadding: false, label: 'Category Number' },
-    { id: 'CatDesc', numeric: false, disablePadding: false, label: 'Category Description' },
-    { id: 'AddDescs', numeric: false, disablePadding: false, label: 'Additional Descriptions' }
-  ];
-
   return (
-     <div className={classes.root}>
+    <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar headCells={headCells} numSelected={selected.length} />
+        <FoodTableToolbar headCells={headCells} numSelected={selected.length} />
         <TableContainer>
           <Table
             className={classes.table}
@@ -121,7 +116,7 @@ const EnhancedTable = ({rows}) => {
             size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
-            <EnhancedTableHead
+            <FoodTableHead
               headCells={headCells}
               classes={classes}
               numSelected={selected.length}
@@ -154,13 +149,33 @@ const EnhancedTable = ({rows}) => {
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row['Code']}
-                      </TableCell>
-                      <TableCell align="right">{row['Desc']}</TableCell>
-                      <TableCell align="right">{row["WWEIA_Cat_Num"]}</TableCell>
-                      <TableCell align="right">{row["WWEIA_Cat_Desc"]}</TableCell>
-                      <TableCell align="right">{row['AddDescs']}</TableCell>
+                      {headCells.map((headCell) =>
+                        headCell['id'] === 'Code' ? (
+                          <TableCell
+                            key={`${row['_id']}-${row[headCell['id']]}`}
+                            component="th"
+                            id={labelId}
+                            scope="row"
+                            padding="none"
+                          >
+                            {row[headCell['id']]}
+                          </TableCell>
+                        ) : headCell['id'] === 'PortDesc' ? (
+                          <TableCell
+                            align="right"
+                            key={`${row['_id']}-${row[headCell['id']]}`}
+                          >
+                            <Selecter foodid={row['_id']} />
+                          </TableCell>
+                        ) : (
+                          <TableCell
+                            align="right"
+                            key={`${row['_id']}-${row[headCell['id']]}`}
+                          >
+                            {row[headCell['id']]}
+                          </TableCell>
+                        )
+                      )}
                     </TableRow>
                   );
                 })}
@@ -188,10 +203,11 @@ const EnhancedTable = ({rows}) => {
       />
     </div>
   );
-}
-
-EnhancedTable.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default EnhancedTable;
+FoodTable.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.object),
+  headCells: PropTypes.arrayOf(PropTypes.object),
+};
+
+export default FoodTable;

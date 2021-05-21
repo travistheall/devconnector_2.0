@@ -6,31 +6,27 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { green } from '@material-ui/core/colors';
+import Icon from '@material-ui/core/Icon';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import styles from "assets/jss/material-kit-pro-react/components/tableStyle.js";
 
 const useToolbarStyles = makeStyles((theme) => ({
-    root: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(1),
-    },
-    highlight:
-      theme.palette.type === 'light'
-        ? {
-            color: theme.palette.secondary.main,
-            backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-          }
-        : {
-            color: theme.palette.text.primary,
-            backgroundColor: theme.palette.secondary.dark,
-          },
-    title: {
-      flex: '1 1 100%',
-    },
-  }));
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1)
+  },
+  highlight: {
+    color: theme.palette.success.main,
+    backgroundColor: lighten(theme.palette.success.light, 0.85)
+  },
+  title: {
+    flex: '1 1 100%'
+  }
+}));
 
-const EnhancedTableToolbar = ({ numSelected }) => {
-  const classes = useToolbarStyles();
+const FoodTableToolbar = ({ numSelected }) => {
+  const classes = useToolbarStyles(styles);
   return (
     <Toolbar
       className={clsx(classes.root, {
@@ -58,9 +54,9 @@ const EnhancedTableToolbar = ({ numSelected }) => {
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
+        <Tooltip title="Add To Meal">
+          <IconButton aria-label="add">
+            <Icon className="fa fa-plus-circle" style={{ color: green[500] }} />
           </IconButton>
         </Tooltip>
       ) : (
@@ -74,8 +70,8 @@ const EnhancedTableToolbar = ({ numSelected }) => {
   );
 };
 
-EnhancedTableToolbar.propTypes = {
+FoodTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired
 };
 
-export default EnhancedTableToolbar;
+export default FoodTableToolbar;

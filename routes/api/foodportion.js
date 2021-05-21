@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var mongoose = require('mongoose');
 const Food = require('../../models/Food');
-const FoodPortion = require('../../models/FoodPortion');
+const FoodPortion = require('../../models/Food_Portion');
 
 
 // @route    POST api/foods
@@ -29,9 +29,9 @@ router.post('/', async (req, res) => {
 // @route    Get api/foodnut
 // @desc     Create a foodnut
 // @access   Public
-router.get('/', async (req, res) => {
+router.get('/getall/', async (req, res) => {
   try {
-    const foodport = await FoodPortion.find().limit(25);
+    const foodport = await FoodPortion.find();
     res.json(foodport);
   } catch (err) {
     console.error(err.message);
@@ -42,14 +42,13 @@ router.get('/', async (req, res) => {
 // @route    Get api/foodnut
 // @desc     Create a foodnut
 // @access   Publict
-router.get('/:text', async (req, res) => {
+router.get('/foodid/:foodid', async (req, res) => {
   try {
-    const food = await Food.findOne({ Code: req.params.text });
-    const foodport = await FoodPortion.find({food: food['_id']});
-    if (!foodport) {
+    const foodports = await FoodPortion.find({food: req.params.foodid});
+    if (!foodports) {
       return res.status(404).json({ msg: 'Food not found' });
     }
-    res.json(foodport);
+    res.json(foodports);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

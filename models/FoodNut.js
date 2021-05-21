@@ -6,8 +6,8 @@ const FoodNutSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'food'
   },
-  Desc: { type: String, required: true },
-  Val: { type: Number, required: true },
+  NutrientDesc: { type: String, required: true },
+  NutrientVal: { type: Number, required: true },
   Unit: { type: String, required: true }
 });
 module.exports = mongoose.model('foodnut', FoodNutSchema);
