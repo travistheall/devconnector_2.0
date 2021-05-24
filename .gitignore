@@ -7,4 +7,6 @@ _resources/
 client/.eslintcache
 .vscode/
 .env
+yarn.lock
+client/yarn.lock
 fuck/
