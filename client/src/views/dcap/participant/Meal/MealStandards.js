@@ -17,7 +17,7 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import NavPills from 'components/NavPills/NavPills';
 
 import SearchStandards from './AddStandards/SearchStandards';
-import RaterTable from 'views/food/table/Rater/RaterTable';
+import SearchPortions from './AddRatings/SearchPortions';
 import ReviewerTable from 'views/food/table/Reviewer/ReviewerTable';
 import PropTypes from 'prop-types';
 
@@ -83,14 +83,14 @@ const MealStandards = ({ meal }) => {
               {
                 tabButton: 'Standard assigner',
                 tabContent: searched ? (
-                  <SearchStandards searchTerm={searchTerm} searched={searched} meal={meal}/>
+                  <SearchStandards searchTerm={searchTerm} searched={searched} meal={meal} />
                 ) : (
                   <CardBody>Please Search a Food</CardBody>
                 )
               },
               {
                 tabButton: 'Rater',
-                tabContent: <RaterTable rows={Object.values(demo)} />
+                tabContent: <SearchPortions meal={meal} />
               },
               {
                 tabButton: 'Reviewer',
