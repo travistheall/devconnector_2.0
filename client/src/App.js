@@ -32,7 +32,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
+          <Navbar dcap={true}/>
           <Switch>
             <Routes />
           </Switch>

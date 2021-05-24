@@ -12,9 +12,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { stableSort, getComparator } from '../utils/helperfunctions';
-import FoodTableToolbar from './FoodTableToolbar';
-import FoodTableHead from './FoodTableHead';
+import { stableSort, getComparator } from './utils';
+import TableToolbar from './TableToolbar';
+import TableHeader from './TableHeader';
 import styles from 'assets/jss/material-kit-pro-react/components/tableStyle.js';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const FoodTable = ({ headCells, rows }) => {
+const AddStandardsTable = ({ headCells, rows, meal }) => {
   const classes = useStyles(styles);
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('Code');
@@ -106,7 +106,7 @@ const FoodTable = ({ headCells, rows }) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <FoodTableToolbar headCells={headCells} selected={selected} />
+        <TableToolbar headCells={headCells} selected={selected} meal={meal}/>
         <TableContainer>
           <Table
             className={classes.table}
@@ -114,7 +114,7 @@ const FoodTable = ({ headCells, rows }) => {
             size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
-            <FoodTableHead
+            <TableHeader
               headCells={headCells}
               classes={classes}
               numSelected={selected.length}
@@ -196,9 +196,10 @@ const FoodTable = ({ headCells, rows }) => {
   );
 };
 
-FoodTable.propTypes = {
+AddStandardsTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.object),
-  headCells: PropTypes.arrayOf(PropTypes.object)
+  headCells: PropTypes.arrayOf(PropTypes.object),
+  meal: PropTypes.object
 };
 
-export default FoodTable;
+export default AddStandardsTable;

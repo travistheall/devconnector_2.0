@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MealSchema = new Schema({
-  user: { typer: Schema.Types.ObjectId, ref: 'user' },
-  desc: String,
-  photos: [{ photo: String }],
-  notes: [{ note: String }]
+  participant: { type: Schema.Types.ObjectId, ref: 'participant' },
+  desc: { type: String },
+  photos: [{ type: String }],
+  notes: [{ type: String }]
 });
 
 module.exports = mongoose.model('meal', MealSchema);

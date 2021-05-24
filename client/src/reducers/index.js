@@ -5,6 +5,10 @@ import profile from './profile';
 import post from './post';
 import food from './food';
 import foodportions from './foodportions';
+import study from './study';
+import participant from './participant';
+import meal from './meal';
+import mealportion from './mealportion';
 
 export default combineReducers({
   alert,
@@ -12,5 +16,9 @@ export default combineReducers({
   profile,
   post,
   food,
-  foodportions
+  foodportions,
+  study,
+  participant,
+  meal,
+  mealportion
 });

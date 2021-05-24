@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { getStudyByAbbrev } from 'actions/study';
+import Spinner from 'layout/Spinner';
 // core components
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
@@ -10,11 +14,15 @@ import blogPostsPageStyle from 'assets/jss/material-kit-pro-react/views/blogPost
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Parallax from 'components/Parallax/Parallax.js';
 import bg10 from 'assets/img/bg10.jpg';
-import PersistentDrawerLeft from 'layout/PersistentDrawerLeft';
+
 const useStyles = makeStyles(blogPostsPageStyle);
 
-const Dcap = () => {
+const Dcap = ({ getStudyByAbbrev, study: { study, loading }, match }) => {
   const classes = useStyles();
+  useEffect(() => {
+    getStudyByAbbrev(match.params.abbrev);
+  }, [getStudyByAbbrev, match.params.abbrev]);
+
   return (
     <div className={classes.section}>
       <Parallax image={bg10} small filter="dark">
@@ -22,28 +30,36 @@ const Dcap = () => {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
               <h2 className={classes.title}>
-                <AccountCircleIcon /> dcap
+                <AccountCircleIcon />{' '}
+                {loading || study === null ? <Spinner /> : study['Abbrev']}
               </h2>
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
-      <PersistentDrawerLeft />
       <div className={classes.container}>
         <GridContainer justify="center">
           <GridItem xs={12} sm={12}>
             <Card pricing raised>
               <CardBody pricing>
-                    <p className={classes.cardDescription}>
-                      dicks
-                    </p>
+                <p className={classes.cardDescription}>Home. Input Study details later.</p>
               </CardBody>
             </Card>
           </GridItem>
         </GridContainer>
       </div>
     </div>
-  )
+  );
 };
 
-export default Dcap;
+Dcap.propTypes = {
+  getStudyByAbbrev: PropTypes.func.isRequired,
+  study: PropTypes.object.isRequired,
+  match: PropTypes.object
+};
+
+const mapStateToProps = (state) => ({
+  study: state.study
+});
+
+export default connect(mapStateToProps, { getStudyByAbbrev })(Dcap);

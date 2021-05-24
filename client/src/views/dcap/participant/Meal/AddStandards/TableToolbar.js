@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +11,7 @@ import { green } from '@material-ui/core/colors';
 import Icon from '@material-ui/core/Icon';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import styles from 'assets/jss/material-kit-pro-react/components/tableStyle.js';
+import { addMealPortions } from 'actions/mealportion';
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -25,11 +27,15 @@ const useToolbarStyles = makeStyles((theme) => ({
   }
 }));
 
-const FoodTableToolbar = ({ selected }) => {
+const TableToolbar = ({ selected, meal, addMealPortions }) => {
   const classes = useToolbarStyles(styles);
   const numSelected = selected.length;
   const handleClick = () => {
-    console.log(selected);
+    const selectedObj = selected.map((foodid) => ({
+      meal: meal['_id'],
+      food: foodid
+    }));
+    addMealPortions(selectedObj);
   };
   return (
     <Toolbar
@@ -59,12 +65,8 @@ const FoodTableToolbar = ({ selected }) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Add To Meal">
-          <IconButton aria-label="add">
-            <Icon
-              className="fa fa-plus-circle"
-              style={{ color: green[500] }}
-              onClick={handleClick}
-            />
+          <IconButton aria-label="add" onClick={handleClick}>
+            <Icon className="fa fa-plus-circle" style={{ color: green[500] }} />
           </IconButton>
         </Tooltip>
       ) : (
@@ -78,8 +80,10 @@ const FoodTableToolbar = ({ selected }) => {
   );
 };
 
-FoodTableToolbar.propTypes = {
-  selected: PropTypes.object
+TableToolbar.propTypes = {
+  addMealPortions: PropTypes.func.isRequired,
+  selected: PropTypes.array,
+  meal: PropTypes.object
 };
 
-export default FoodTableToolbar;
+export default connect(null, { addMealPortions })(TableToolbar);

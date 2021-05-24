@@ -16,6 +16,11 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/study', require('./routes/api/DCAP/study'));
+app.use('/api/participant', require('./routes/api/DCAP/participant'));
+app.use('/api/meal', require('./routes/api/meal'));
+app.use('/api/mealportion', require('./routes/api/DCAP/mealportion'));
+
 app.use('/api/food', require('./routes/api/food'));
 app.use('/api/foodnut', require('./routes/api/foodnut'));
 app.use('/api/foodport', require('./routes/api/foodportion'));
