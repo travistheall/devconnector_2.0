@@ -8,7 +8,7 @@
     "server": "nodemon server",
     "client": "cd client && yarn start",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "heroku-postbuild": "YARN_PRODUCTION=false cd client && yarn install && yarn build"
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn install && cd client && yarn install && yarn build"
   },
   "author": "Travis Theall",
   "license": "MIT",
