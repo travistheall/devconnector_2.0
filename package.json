@@ -26,7 +26,9 @@
     "normalize-url": "^6.0.0"
   },
   "engines": {
-    "yarn": "1.22.10"
+    "node": "14.x",
+    "npm": "6.x",
+    "yarn": "1.x"
   },
   "devDependencies": {
     "concurrently": "^6.0.2",
