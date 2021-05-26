@@ -8,7 +8,7 @@ import { getMealPortions } from 'actions/mealportion';
 const SearchPortions = ({
   meal,
   getMealPortions,
-  mealportion: { mealportions, loading }
+  mealportion: { mealPortions, loading }
 }) => {
   const headCells = [
     { id: 'Code', label: 'Food Code', form: false },
@@ -23,10 +23,10 @@ const SearchPortions = ({
     getMealPortions(meal['_id']);
   }, [getMealPortions, meal]);
 
-  return loading || mealportions === undefined ? (
+  return loading || mealPortions === undefined ? (
     <Spinner />
   ) : (
-    <RatingTable headCells={headCells} mealportions={mealportions} />
+    <RatingTable headCells={headCells} mealportions={mealPortions} />
   );
 };
 

@@ -1,4 +1,7 @@
+/* eslint-disable */ 
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateMealPortions } from 'actions/mealportion';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,19 +13,35 @@ import PropTypes from 'prop-types';
 import Button from 'components/CustomButtons/Button';
 import Paper from '@material-ui/core/Paper';
 import styles from 'assets/jss/material-kit-pro-react/components/tableStyle.js';
-import Selecter from './Selecter';
-import CustomInput from 'components/CustomInput/CustomInput';
+import DDRow from './DDRow';
 
 const useStyles = makeStyles(styles);
 
-const RatingTable = ({ headCells, mealportions }) => {
+const RatingTable = ({ headCells, mealportions, updateMealPortions }) => {
   const classes = useStyles();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(mealportions);
+
+  const makeFoodJustId = (item, old, id) => {
+    let temp = Object.assign({}, item);
+    if (temp.food === old) {
+        temp.food = id;
+    }
+    return temp}
+
   const onClick = () => {
-    console.log(formData);
+    let nfd = formData.map(x => makeFoodJustId(x, x['food'], x['food']['_id']))
+    updateMealPortions(nfd);
   };
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  
+  const handleChange = (e, i) => {
+    let items = [...formData];
+    let item = { ...items[i] };
+    e.target.name === 'taken' || e.target.name === 'returned'
+      ? (item[e.target.name] = parseFloat(e.target.value))
+      : (item[e.target.name] = e.target.value);
+    items[i] = item;
+    setFormData(items);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -44,47 +63,13 @@ const RatingTable = ({ headCells, mealportions }) => {
         </TableHead>
 
         <TableBody>
-          {mealportions.map((portion) => (
-            <TableRow key={portion['_id']}>
-              <TableCell component="th" scope="row">
-                11000000
-              </TableCell>
-              <TableCell align="right" />
-              <TableCell align="right" />
-              <TableCell align="right">
-                <Selecter
-                  foodid={portion['food']}
-                  setFormData={setFormData}
-                  formData={formData}
-                />
-              </TableCell>
-              <TableCell align="right">
-                <CustomInput
-                  id={'taken'}
-                  formControlProps={{ fullWidth: true }}
-                  inputProps={{
-                    placeholder: 'taken',
-                    type: 'number',
-                    name: 'taken',
-                    value: formData,
-                    onChange: onChange
-                  }}
-                />
-              </TableCell>
-              <TableCell align="right">
-                <CustomInput
-                  id={'returned'}
-                  formControlProps={{ fullWidth: true }}
-                  inputProps={{
-                    placeholder: 'returned',
-                    type: 'number',
-                    name: 'returned',
-                    value: formData,
-                    onChange: onChange
-                  }}
-                />
-              </TableCell>
-            </TableRow>
+          {formData.map((portion, i) => (
+            <DDRow
+              portion={portion}
+              handleChange={handleChange}
+              i={i}
+              key={i}
+            />
           ))}
 
           <TableRow className={classes.right}>
@@ -107,7 +92,8 @@ const RatingTable = ({ headCells, mealportions }) => {
 
 RatingTable.propTypes = {
   headCells: PropTypes.arrayOf(PropTypes.object),
-  mealportions: PropTypes.array
+  mealportions: PropTypes.array,
+  updateMealPortions: PropTypes.func
 };
 
-export default RatingTable;
+export default connect(null, {updateMealPortions})(RatingTable);

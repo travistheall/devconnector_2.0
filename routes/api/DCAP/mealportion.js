@@ -1,20 +1,22 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const { update } = require('../../../models/DCAP/MealPortion');
 const router = express.Router();
 const MealPortion = require('../../../models/DCAP/MealPortion');
-
 // @route    GET api/mealportions
 // @desc     Get all portions for a meal
 // @access   Public
 router.get('/meal/:mealid', async (req, res) => {
   try {
-    const mealportions = await MealPortion.find({meal: req.params.mealid });
+    const mealportions = await MealPortion.find({
+      meal: req.params.mealid
+    }).populate('food');
     res.json(mealportions);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
-
 
 router.get('/id/:id', async (req, res) => {
   try {
@@ -34,8 +36,36 @@ router.get('/id/:id', async (req, res) => {
 // @access   Publict
 router.post('/create/', async (req, res) => {
   try {
-    const mealportion = await MealPortion.insertMany(req.body)
+    const mealportion = await MealPortion.insertMany(req.body);
     res.json(mealportion);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server fucked up');
+  }
+});
+
+// @route    POST api/participant
+// @desc     Create a participant
+// @access   Publict
+router.put('/update/', async (req, res) => {
+  try {
+    let updated = [];
+    req.body.map(async (p) => {
+      console.log(p);
+      const nmp = await MealPortion.updateOne(
+        { _id: p['_id'] },
+        {
+          $set: {
+            taken: p['taken'],
+            returned: p['returned'],
+            portion: p['portion']
+          }
+        },
+        { upsert: true }
+      );
+      updated.push(nmp);
+    });
+    res.json(updated);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server fucked up');

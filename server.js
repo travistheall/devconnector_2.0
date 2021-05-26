@@ -20,6 +20,7 @@ app.use('/api/study', require('./routes/api/DCAP/study'));
 app.use('/api/participant', require('./routes/api/DCAP/participant'));
 app.use('/api/meal', require('./routes/api/meal'));
 app.use('/api/mealportion', require('./routes/api/DCAP/mealportion'));
+app.use('/api/foodingredient', require('./routes/api/DCAP/foodingredient'));
 
 app.use('/api/food', require('./routes/api/food'));
 app.use('/api/foodnut', require('./routes/api/foodnut'));

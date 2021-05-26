@@ -3,6 +3,7 @@ import { setAlert } from './alert';
 import {
   GET_MEAL_PORTION,
   ADD_MEAL_PORTION,
+  UPDATE_MEAL_PORTION
 } from './types';
 
 // Get posts
@@ -40,3 +41,24 @@ export const addMealPortions = (formData) => async (dispatch) => {
     });
   }
 };
+
+// Add mealPortion
+export const updateMealPortions = (formData) => async (dispatch) => {
+  try {
+    console.log(formData);
+    const res = await api.put('/mealportion/update', formData);
+    console.log(res);
+    dispatch({
+      type: UPDATE_MEAL_PORTION,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Portion Updated', 'success'));
+  } catch (err) {
+    dispatch({
+      type: UPDATE_MEAL_PORTION,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { getFoodPortions } from 'actions/foodportions';
-import Spinner from 'layout/Spinner';
 import FormControl from '@material-ui/core/FormControl';
 
 import Select from '@material-ui/core/Select';
@@ -16,50 +15,49 @@ const useStyles = makeStyles(styles);
 
 
 const Selecter = ({
-  foodid,
-  setFormData
+  i,
+  portionFormData,
+  handleChange,
+  setPW
 }) => {
-  const [simpleSelect, setSimpleSelect] = useState('');
-  const [portions, setPortions] = useState([]);
+  const [portionsSelecter, setPortionsSelecter] = useState([]);
   const [loading, setLoading] = useState(true);
-  const url = `api/foodport/foodid/${foodid}`;
-  const handleSimple = (event) => {
-    setSimpleSelect(event.target.value);
-    console.log(event.target.name)
-    setFormData({[event.target.name]: {"portion": event.target.value}})
-  };
+  const url = portionFormData === undefined ? "" : `api/foodport/foodid/${portionFormData['food']['_id']}`;
   const classes = useStyles();
-
+  const handleSelect = (e, i) => {
+    handleChange(e, i)
+    setPW(portionsSelecter[i]['Weight'])
+  }
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
       const result = await axios(url);
-      setPortions(result.data);
+      setPortionsSelecter(result.data);
       setLoading(false);
     };
     fetchData();    
-  }, [foodid]);
+  }, [portionFormData]);
 
-  return loading || portions === undefined ? (
-    <Spinner />
+  return loading || portionsSelecter === undefined || portionFormData === undefined ? (
+    <p>...</p>
   ) : (
     <FormControl fullWidth className={classes.selectFormControl}>
       <Select
-        id={`${foodid}`}
+        id={`${portionFormData['food']['_id']}`}
         MenuProps={{
           className: classes.selectMenu
         }}
         classes={{
           select: classes.select
         }}
-        value={simpleSelect}
-        onChange={handleSimple}
+        value={portionFormData['portion'] ? portionFormData['portion'] : ""}
+        onChange={e => handleSelect(e, i)}
         inputProps={{
-          name: foodid,
-          id: foodid
+          name: 'portion',
+          id: `portion-${i}`
         }}
       >
-        {portions.map((portion) => {
+        {portionsSelecter.map((portion) => {
           return (
             <MenuItem
               key={`${portion['_id']}`}
@@ -79,11 +77,13 @@ const Selecter = ({
 };
 
 Selecter.propTypes = {
-  setFormData: PropTypes.func,
-  formData: PropTypes.object,
-  foodid: PropTypes.string,
+  i: PropTypes.number,
+  handleChange: PropTypes.func,
+  portionFormData: PropTypes.object,
+  portion: PropTypes.object,
   getFoodPortions: PropTypes.func.isRequired,
-  foodportions: PropTypes.object
+  foodportions: PropTypes.object,
+  setPW: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({

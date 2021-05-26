@@ -1,4 +1,4 @@
-import { ADD_MEAL_PORTION, GET_MEAL_PORTION } from '../actions/types';
+import { ADD_MEAL_PORTION, GET_MEAL_PORTION, UPDATE_MEAL_PORTION } from '../actions/types';
 
 const initialState = {
   mealPortions: [],
@@ -23,6 +23,12 @@ function mealPortionReducer(state = initialState, action) {
         mealPortions: payload,
         loading: false
       };
+      case UPDATE_MEAL_PORTION:
+        return {
+          ...state,
+          mealPortions: payload,
+          loading: false
+        };
     default:
       return state;
   }
