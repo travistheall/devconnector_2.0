@@ -15,23 +15,29 @@ import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
+import NutFactsModal from './NutFacts/NutFactsModal';
 
 const DDRow = ({ portion, handleChange, i }) => {
   const [dropDown, setDropDown] = useState(false);
   const [loading, setLoading] = useState(true);
   const [ingredients, setIngredients] = useState([]);
   const [pw, setPW] = useState(null);
-
+  const [ingredientAmountSum, setIngredientAmountSum] = useState(0);
+  const [ingredientWeightSum, setIngredientWeightSum] = useState(0);
   const url =
     portion === undefined
       ? ''
       : `api/foodingredient/foodid/${portion['food']['_id']}`;
-  console.log(pw);
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       const result = await axios(url);
       setIngredients(result.data);
+      let a = result.data.map((x) => x['Amount']).reduce(reducer);
+      setIngredientAmountSum(a);
+      let w = result.data.map((x) => x['IngredWeight']).reduce(reducer);
+      setIngredientWeightSum(w);
       setLoading(false);
     };
     fetchData();
@@ -80,6 +86,9 @@ const DDRow = ({ portion, handleChange, i }) => {
           />
         </TableCell>
         <TableCell>
+          <NutFactsModal />
+        </TableCell>
+        <TableCell>
           {' '}
           <IconButton
             aria-label="expand row"
@@ -107,7 +116,7 @@ const DDRow = ({ portion, handleChange, i }) => {
                     <TableCell align="right">Measure</TableCell>
                     <TableCell align="right">Portion Description</TableCell>
                     <TableCell align="right">Retention Code</TableCell>
-                    <TableCell align="right">Ingredient Weight</TableCell>
+                    <TableCell align="right">Ingredient Weight (g)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -121,21 +130,19 @@ const DDRow = ({ portion, handleChange, i }) => {
                         <TableCell>{row.IngredCode}</TableCell>
                         <TableCell align="right">{row.IngredDesc}</TableCell>
                         <TableCell align="right">
-                          {Math.round(
-                            row.Amount *
-                              ((pw / 100) *
-                                (portion['taken'] - portion['returned']))
-                          )}
+                          {parseFloat(
+                            (row.Amount / ingredientAmountSum) *
+                              (pw * (portion['taken'] - portion['returned']))
+                          ).toFixed(1)}
                         </TableCell>
                         <TableCell align="right">{row.Measure}</TableCell>
                         <TableCell align="right">{row.PortDesc}</TableCell>
                         <TableCell align="right">{row.RetCode}</TableCell>
                         <TableCell align="right">
-                        {Math.round(
-                            row.IngredWeight *
-                              ((pw / 100) *
-                                (portion['taken'] - portion['returned']))
-                          )}
+                          {parseFloat(
+                            (row.IngredWeight / ingredientWeightSum) *
+                              (pw * (portion['taken'] - portion['returned']))
+                          ).toFixed(1)}
                         </TableCell>
                       </TableRow>
                     ))

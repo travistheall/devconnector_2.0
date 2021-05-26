@@ -18,21 +18,23 @@ import NavPills from 'components/NavPills/NavPills';
 
 import SearchStandards from './AddStandards/SearchStandards';
 import SearchPortions from './AddRatings/SearchPortions';
-import ReviewerTable from 'views/food/table/Reviewer/ReviewerTable';
+import ReviewStandards from './ReviewStandards/ReviewStandards';
 import PropTypes from 'prop-types';
 
-import demo from 'views/food/table/Rater/json/demo.json';
+//import demo from 'views/food/table/Rater/json/demo.json';
 import sectionSubscribeLineStyle from 'assets/jss/material-kit-pro-react/views/blogPostsSections/sectionSubscribeLineStyle.js';
 
 const useSubStyles = makeStyles(sectionSubscribeLineStyle);
 
 const MealStandards = ({ meal }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [textInp, setTextInp] = useState('');
+  const [searchTerm, setSearchTerm] = useState(textInp);
   const [searched, setSearched] = useState(false);
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
+    setTextInp(e.target.value);
   };
   const handleClick = () => {
+    setSearchTerm(textInp);
     setSearched(true);
   };
   const subClasses = useSubStyles();
@@ -58,8 +60,8 @@ const MealStandards = ({ meal }) => {
                     <FastfoodIcon className={subClasses.icon} />
                   </InputAdornment>
                 ),
-                placeholder: searchTerm || '',
-                value: searchTerm || '',
+                placeholder: textInp || '',
+                value: textInp || '',
                 onChange: handleChange
               }}
             />
@@ -94,7 +96,7 @@ const MealStandards = ({ meal }) => {
               },
               {
                 tabButton: 'Reviewer',
-                tabContent: <ReviewerTable rows={Object.values(demo)} />
+                tabContent: <ReviewStandards meal={meal} />
               }
             ]}
           />

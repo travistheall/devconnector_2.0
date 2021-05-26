@@ -13,17 +13,16 @@ import PropTypes from 'prop-types';
 import Button from 'components/CustomButtons/Button';
 import Paper from '@material-ui/core/Paper';
 import styles from 'assets/jss/material-kit-pro-react/components/tableStyle.js';
-import DDRow from './DDRow';
+import Trow from './Trow';
 
 const useStyles = makeStyles(styles);
 
-const RatingTable = ({ headCells, mealportions, updateMealPortions }) => {
+const ReviewTable = ({ headCells, mealportions, updateMealPortions }) => {
   const classes = useStyles();
-  const [formData, setFormData] = useState(mealportions);
-  useEffect(() => {
-    setFormData(mealportions)
-  }, [mealportions]);
-  
+  const u1 = mealportions !== undefined ? mealportions.filter(p=>p["user"]==="609232c6d50a347264bea31d") : [];
+  const u2 = mealportions !== undefined ? mealportions.filter(p=>p["user"]==="60922cbfc8ce860fe48126b5") : [];
+  const [formData, setFormData] = useState(u1);
+
   const makeFoodJustId = (item, old, id) => {
     let temp = Object.assign({}, item);
     if (temp.food === old) {
@@ -46,6 +45,17 @@ const RatingTable = ({ headCells, mealportions, updateMealPortions }) => {
     setFormData(items);
   };
 
+  useEffect(() => {
+    let u1_items = [...u1];
+    u1.map((u1_item, i)=>{
+        let u2_item = u2.filter(y=>y['food']['_id']===u1_item['food']['_id'])
+        u1_item['taken_u2'] = u2_item[0]["taken"]
+        u1_item['returned_u2'] = u2_item[0]["returned"]
+        u1_items[i] = u1_item;
+    });
+    setFormData(u1_items)
+  }, [mealportions]);
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
@@ -67,7 +77,7 @@ const RatingTable = ({ headCells, mealportions, updateMealPortions }) => {
 
         <TableBody>
           {formData.map((portion, i) => (
-            <DDRow
+            <Trow
               portion={portion}
               handleChange={handleChange}
               i={i}
@@ -76,7 +86,6 @@ const RatingTable = ({ headCells, mealportions, updateMealPortions }) => {
           ))}
 
           <TableRow className={classes.right}>
-            <TableCell />
             <TableCell />
             <TableCell />
             <TableCell />
@@ -94,10 +103,10 @@ const RatingTable = ({ headCells, mealportions, updateMealPortions }) => {
   );
 };
 
-RatingTable.propTypes = {
+ReviewTable.propTypes = {
   headCells: PropTypes.arrayOf(PropTypes.object),
   mealportions: PropTypes.array,
   updateMealPortions: PropTypes.func
 };
 
-export default connect(null, {updateMealPortions})(RatingTable);
+export default connect(null, {updateMealPortions})(ReviewTable);

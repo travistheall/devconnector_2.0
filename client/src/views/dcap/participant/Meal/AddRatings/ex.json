@@ -1,0 +1,37 @@
+[{
+        "user": "60922cbfc8ce860fe48126b5",
+        "food": 1,
+        "u2t": "1",
+        "id": "60ada32a74d6bf1b1f6616c1"
+    },
+    {
+        "user": "60922cbfc8ce860fe48126b5",
+        "u2t": "1",
+        "food": 2,
+        "id": "60ada3c074d6bf1b1f6616c4"
+    },
+    {
+        "user": "60922cbfc8ce860fe48126b5",
+        "u2t": "1",
+        "food": 3,
+        "id": "60ada41074d6bf1b1f6616c5"
+    },
+    {
+        "user": "609232c6d50a347264bea31d",
+        "u1t": "2",
+        "food": 1,
+        "id": "60ae69ad452fc3663fb9c73c"
+    },
+    {
+        "user": "609232c6d50a347264bea31d",
+        "u1t": "2",
+        "food": 2,
+        "id": "60ae69e0452fc3663fb9c73d"
+    },
+    {
+        "user": "609232c6d50a347264bea31d",
+        "u1t": "2",
+        "food": 3,
+        "id": "60ae6a04452fc3663fb9c73e"
+    }
+]
