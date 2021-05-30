@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const FoodIngredient = require('../../../models/DCAP/FoodIngredient');
+const FoodIngredient = require('../../../models/FNDDS/FoodIngredient');
 
 // @route    GET api/mealportions
 // @desc     Get all portions for a meal

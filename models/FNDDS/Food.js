@@ -8,5 +8,5 @@ const FoodSchema = new Schema({
   WWEIA_Cat_Desc: { type: String, required: true, text: true },
   AddDescs: { type: String, text: true },
 });
-FoodSchema.index({ Desc: 'text', WWEIA_Cat_Desc: 'text', AddDescs: 'text' });
+FoodSchema.index({ Desc: 'text', AddDescs: 'text' });
 module.exports = mongoose.model('food', FoodSchema);

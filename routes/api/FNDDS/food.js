@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Food = require('../../models/Food');
+const Food = require('../../../models/FNDDS/Food');
 //const { check, validationResult } = require('express-validator');
 // @route    GET api/foods
 // @desc     Get all foods

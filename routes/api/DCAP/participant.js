@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Participant = require('../../../models/DCAP/Participant');
+
 //const { check, validationResult } = require('express-validator');
 // @route    GET api/participants
 // @desc     Get all participants

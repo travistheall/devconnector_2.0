@@ -1,25 +1,23 @@
 const express = require('express');
 const router = express.Router();
 var mongoose = require('mongoose');
-const Food = require('../../models/Food');
-const FoodPortion = require('../../models/Food_Portion');
-
+const Food = require('../../../models/FNDDS/Food');
+const FoodNut = require('../../../models/FNDDS/FoodNut');
 
 // @route    POST api/foods
 // @desc     Create a foods
 // @access   Public
-router.post('/', async (req, res) => {
+router.post('/create/', async (req, res) => {
   try {
     const food = await Food.findOne({ Code: req.body.Code });
-    const newFoodPortion= new FoodPortion({
-        food: food.id,
-          SubCodeDesc: req.body.SubCodeDesc,
-          SeqNum: req.body.SeqNum,
-          Val: req.body.Val,
-          Unit: req.body.Unit
+    const newFoodNut = new FoodNut({
+      Food: food.id,
+      Desc: req.body.Desc,
+      Val: req.body.Val,
+      Unit: req.body.Unit
     });
-    const foodport = await newFoodPortion.save();
-    res.json(foodport);
+    const foodnut = await newFoodNut.save();
+    res.json(foodnut);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -31,8 +29,8 @@ router.post('/', async (req, res) => {
 // @access   Public
 router.get('/getall/', async (req, res) => {
   try {
-    const foodport = await FoodPortion.find();
-    res.json(foodport);
+    const foodnut = await FoodNut.find().limit(65);
+    res.json(foodnut);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -44,11 +42,14 @@ router.get('/getall/', async (req, res) => {
 // @access   Publict
 router.get('/foodid/:foodid', async (req, res) => {
   try {
-    const foodports = await FoodPortion.find({food: req.params.foodid});
-    if (!foodports) {
+    const food = await Food.findById(req.body.foodid);
+    console.log(food)
+    const foodnut = await FoodNut.find({food: req.params.foodid});
+    console.log(foodnut)
+    if (!foodnut) {
       return res.status(404).json({ msg: 'Food not found' });
     }
-    res.json(foodports);
+    res.json(foodnut);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

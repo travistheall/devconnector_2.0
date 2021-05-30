@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Serving = require('../../models/Serving');
+const Serving = require('../../../models/DCAP/Serving');
 
 // @route    POST api/foods
 // @desc     Create a foods

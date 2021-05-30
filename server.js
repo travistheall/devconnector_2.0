@@ -14,17 +14,19 @@ app.use(express.json());
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
+
+app.use('/api/profile', require('./routes/api/Blog/profile'));
+app.use('/api/posts', require('./routes/api/Blog/posts'));
+
 app.use('/api/study', require('./routes/api/DCAP/study'));
 app.use('/api/participant', require('./routes/api/DCAP/participant'));
-app.use('/api/meal', require('./routes/api/meal'));
+app.use('/api/meal', require('./routes/api/DCAP/meal'));
 app.use('/api/mealportion', require('./routes/api/DCAP/mealportion'));
-app.use('/api/foodingredient', require('./routes/api/DCAP/foodingredient'));
 
-app.use('/api/food', require('./routes/api/food'));
-app.use('/api/foodnut', require('./routes/api/foodnut'));
-app.use('/api/foodport', require('./routes/api/foodportion'));
+app.use('/api/foodingredient', require('./routes/api/FNDDS/foodingredient'));
+app.use('/api/food', require('./routes/api/FNDDS/food'));
+app.use('/api/foodnut', require('./routes/api/FNDDS/foodnut'));
+app.use('/api/foodport', require('./routes/api/FNDDS/foodportion'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
