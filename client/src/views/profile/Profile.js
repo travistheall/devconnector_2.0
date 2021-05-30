@@ -21,8 +21,6 @@ import Parallax from 'components/Parallax/Parallax.js';
 import Button from 'components/CustomButtons/Button.js';
 
 import NavPills from 'components/NavPills/NavPills.js';
-import br from 'assets/img/br.jpg';
-
 import profilePageStyle from 'assets/jss/material-kit-pro-react/views/profilePageStyle.js';
 
 //import Socials from './Socials';
@@ -39,7 +37,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
 
   return (
     <div>
-      <Parallax image={br} filter="dark" className={classes.parallax} />
+      <Parallax image="https://tntheall.s3.amazonaws.com/assets/img/br.jpg" filter="dark" className={classes.parallax} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <GridContainer justify="center">

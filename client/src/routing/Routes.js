@@ -16,7 +16,7 @@ import AboutMe from 'views/about_me/AboutMe';
 import Participant from 'views/dcap/participant/Participant';
 import Dcap from 'views/dcap/dcap';
 
-//import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
   return (
@@ -28,9 +28,9 @@ const Routes = () => {
       <Route exact path="/profiles" component={Profiles} />
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/post/coursera" component={ExamplePost} />
-      <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/posts" component={Posts} />
-      <Route exact path="/posts/:id" component={Post} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/posts" component={Posts} />
+      <PrivateRoute exact path="/posts/:id" component={Post} />
       <Route exact path="/part" component={Participant} />
       <Route exact path="/dcap/:abbrev" component={Dcap} />
       <Route component={NotFound} />

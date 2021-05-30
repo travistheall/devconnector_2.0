@@ -11,7 +11,6 @@ import GridItem from 'components/Grid/GridItem.js';
 import Button from 'components/CustomButtons/Button.js';
 
 import presentationStyle from 'assets/jss/material-kit-pro-react/views/presentationStyle.js';
-import image from 'assets/img/wfh.JPEG';
 
 const useStyles = makeStyles(presentationStyle);
 
@@ -28,13 +27,13 @@ const Landing = ({ isAuthenticated }) => {
     <div
       className={classes.pageHeader}
       style={{
-        backgroundImage: 'url(' + image + ')',
+        backgroundImage: 'url(https://tntheall.s3.amazonaws.com/assets/img/wfh.JPEG)',
         backgroundSize: 'cover',
         backgroundPosition: 'top center'
       }}
     >
       <Parallax
-        image={image}
+        image={"https://tntheall.s3.amazonaws.com/assets/img/wfh.JPEG"}
         className={classes.parallax}
       >
         <div className={classes.container}>

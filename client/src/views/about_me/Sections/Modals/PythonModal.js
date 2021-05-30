@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { forwardRef, useState } from 'react';
 //import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,8 +19,6 @@ import CardAvatar from 'components/Card/CardAvatar.js';
 import CardFooter from 'components/Card/CardFooter.js';
 import Badge from 'components/Badge/Badge.js';
 import PythonIcon from 'views/about_me/Sections/Icon/PythonIcon';
-import Python from 'assets/img/prog/Python.png';
-
 import Accordion from 'components/Accordion/Accordion';
 
 import style from 'assets/jss/material-kit-pro-react/views/componentsSections/javascriptStyles.js';
@@ -42,7 +39,7 @@ const PythonModal = () => {
       <div className={teamClasses.team}>
         <Card profile plain>
           <CardAvatar profile plain>
-            <img src={Python} alt="profile-pic" className={teamClasses.img} />
+            <img src={"https://tntheall.s3.amazonaws.com/assets/img/prog/Python.png"} alt="profile-pic" className={teamClasses.img} />
           </CardAvatar>
           <CardBody plain>
             <h4 className={teamClasses.cardTitle}>Python</h4>
@@ -126,7 +123,7 @@ const PythonModal = () => {
                           <p
                             className={`${classes.description} ${classes.textCenter}`}
                           >
-                            Created a script that web scraped zillow's housing
+                            Created a script that web scraped zillow{"'"}s housing
                             data and used the foursquare api to analyze where to
                             open a restaurant in Baton Rouge. I published the
                             article on my website. Previously created using
@@ -227,7 +224,7 @@ const PythonModal = () => {
                             data. I have reated scripts to scrape shopify
                             website backends to create a growing product
                             database of e-cigarettes and e-liquids. Additionally
-                            I scrape my company's site for large json data that
+                            I scrape my company{"'"}s site for large json data that
                             they expect me to copy, paste, and modify.
                           </p>
                         </CardBody>

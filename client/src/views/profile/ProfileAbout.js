@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'components/Card/Card';
 
-
-
 const ProfileAbout = ({
   profile: {
     bio,

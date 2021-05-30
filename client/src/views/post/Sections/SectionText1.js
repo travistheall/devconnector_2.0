@@ -8,12 +8,6 @@ import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 
 // core components
-
-import br1 from 'assets/img/br1.jpg';
-import br2 from 'assets/img/br2.jpg';
-import br3 from 'assets/img/br3.jpg';
-import brf from 'assets/img/brf.jpg';
-import brf1 from 'assets/img/brf1.png';
 import sectionTextStyle from 'assets/jss/material-kit-pro-react/views/blogPostSections/sectionTextStyle.js';
 import Data from '../ExampleSect/Data';
 import Target from '../ExampleSect/Target';
@@ -38,13 +32,13 @@ export default function SectionText1() {
         <GridItem xs={12} sm={10} md={10} className={classes.section}>
           <GridContainer>
             <GridItem xs={12} sm={4} md={4}>
-              <img src={br1} alt="..." className={imgClasses} />
+              <img src={'https://tntheall.s3.amazonaws.com/assets/img/br1.jpg'} alt="..." className={imgClasses} />
             </GridItem>
             <GridItem xs={12} sm={4} md={4}>
-              <img src={br2} alt="..." className={imgClasses} />
+              <img src={'https://tntheall.s3.amazonaws.com/assets/img/br2.jpg'} alt="..." className={imgClasses} />
             </GridItem>
             <GridItem xs={12} sm={4} md={4}>
-              <img src={br3} alt="..." className={imgClasses} />
+              <img src={'https://tntheall.s3.amazonaws.com/assets/img/br3.jpg'} alt="..." className={imgClasses} />
             </GridItem>
           </GridContainer>
         </GridItem>
@@ -52,10 +46,10 @@ export default function SectionText1() {
         <GridItem xs={12} sm={10} md={10} className={classes.section}>
           <GridContainer>
             <GridItem xs={12} sm={6} md={6}>
-              <img src={brf} alt="..." className={imgClasses} />
+              <img src={'https://tntheall.s3.amazonaws.com/assets/img/brf.jpg'} alt="..." className={imgClasses} />
             </GridItem>
             <GridItem xs={12} sm={6} md={6}>
-              <img src={brf1} alt="..." className={imgClasses} />
+              <img src={'https://tntheall.s3.amazonaws.com/assets/img/brf1.png'} alt="..." className={imgClasses} />
             </GridItem>
           </GridContainer>
         </GridItem>

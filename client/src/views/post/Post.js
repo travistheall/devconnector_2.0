@@ -20,7 +20,6 @@ import Button from 'components/CustomButtons/Button.js';
 // sections for this page
 
 import blogPostPageStyle from 'assets/jss/material-kit-pro-react/views/blogPostPageStyle.js';
-import bg5 from 'assets/img/bg5.jpg';
 const useStyles = makeStyles(blogPostPageStyle);
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
@@ -35,7 +34,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
 
   return (
     <div>
-      <Parallax image={bg5} filter="dark">
+      <Parallax image={'https://tntheall.s3.amazonaws.com/aassets/img/bg5.jpg'} filter="dark">
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem md={8} className={classes.textCenter}>

@@ -8,12 +8,6 @@ import GridItem from 'components/Grid/GridItem.js';
 import { makeStyles } from '@material-ui/core/styles';
 
 import officeStyle from 'assets/jss/material-kit-pro-react/views/aboutUsSections/officeStyle.js';
-
-// office
-import buddy from 'assets/img/office/buddy.jpeg';
-import office from 'assets/img/office/office.JPEG';
-import workstation from 'assets/img/office/workstation.JPEG';
-
 const useStyles = makeStyles(officeStyle);
 
 export default function SectionOffice() {
@@ -42,7 +36,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={office}
+            src={'https://tntheall.s3.amazonaws.com/assets/img/office/office.JPEG'}
             alt="office"
           />
         </GridItem>
@@ -53,7 +47,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={workstation}
+            src={'https://tntheall.s3.amazonaws.com/assets/img/office/workstation.JPEG'}
             alt="workstation"
           />
         </GridItem>
@@ -64,7 +58,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={buddy}
+            src={'https://tntheall.s3.amazonaws.com/assets/img/office/buddy.jpeg'}
             alt="coffee buddy"
           />
         </GridItem>

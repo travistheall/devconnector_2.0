@@ -19,7 +19,6 @@ import CardFooter from 'components/Card/CardFooter.js';
 import CustomInput from 'components/CustomInput/CustomInput.js';
 
 import loginPageStyle from 'assets/jss/material-kit-pro-react/views/loginPageStyle.js';
-import image from 'assets/img/bg7.jpg';
 
 import MyAlert from 'layout/MyAlert';
 
@@ -54,7 +53,7 @@ const Login = ({ login, isAuthenticated }) => {
     <div
       className={classes.pageHeader}
       style={{
-        backgroundImage: 'url(' + image + ')',
+        backgroundImage: 'url(https://tntheall.s3.amazonaws.com/assets/img/bg7.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'top center'
       }}

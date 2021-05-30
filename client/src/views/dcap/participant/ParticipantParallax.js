@@ -8,14 +8,13 @@ import Parallax from 'components/Parallax/Parallax.js';
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
 //static files
-import food from 'assets/img/food.jpg';
 import aboutUsStyle from 'assets/jss/material-kit-pro-react/views/aboutUsStyle.js';
 const useStyles = makeStyles(aboutUsStyle);
 
 const ParticipantParallax = ({ name }) => {
   const classes = useStyles();
   return (
-    <Parallax image={food} filter="dark" small>
+    <Parallax image={"https://tntheall.s3.amazonaws.com/assets/img/food.jpg"} filter="dark" small>
       <div className={classes.container}>
         <GridContainer justify="center">
           <GridItem

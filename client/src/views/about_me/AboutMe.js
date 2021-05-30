@@ -19,8 +19,8 @@ import SectionOffice from './Sections/SectionOffice.js';
 import SectionContact from './Sections/SectionContact.js';
 import ExpEdu  from './Sections/ExpEdu.js';
 
+//import image from 'assets/img/wfh.JPEG';
 import aboutUsStyle from 'assets/jss/material-kit-pro-react/views/aboutUsStyle.js';
-import image from 'assets/img/wfh.JPEG';
 
 const useStyles = makeStyles(aboutUsStyle);
 
@@ -34,7 +34,7 @@ const AboutMe = ({ getProfileById, profile: { profile } }) => {
   const classes = useStyles();
   return (
     <div>
-      <Parallax image={image} filter="dark" small>
+      <Parallax image={"https://tntheall.s3.amazonaws.com/assets/img/wfh.JPEG"} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem

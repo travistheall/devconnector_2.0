@@ -3,8 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import errorPageStyle from "assets/jss/material-kit-pro-react/views/errorPageStyles.js";
-import image from "assets/img/clint-mckoy.jpg";
-
 const useStyles = makeStyles(errorPageStyle);
 
 const NotFound = () => {
@@ -18,7 +16,7 @@ const NotFound = () => {
       <div
         className={classes.pageHeader}
         style={{
-          backgroundImage: "url(" + image + ")",
+          backgroundImage: "url(https://tntheall.s3.amazonaws.com/assets/img/clint-mckoy.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "top center"
         }}

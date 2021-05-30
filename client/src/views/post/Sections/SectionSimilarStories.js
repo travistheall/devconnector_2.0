@@ -13,10 +13,6 @@ import Info from "components/Typography/Info.js";
 import Success from "components/Typography/Success.js";
 import Danger from "components/Typography/Danger.js";
 
-import blog6 from "assets/img/examples/blog6.jpg";
-import blog8 from "assets/img/examples/blog8.jpg";
-import blog7 from "assets/img/examples/blog7.jpg";
-
 import sectionSimilarStoriesStyle from "assets/jss/material-kit-pro-react/views/blogPostSections/sectionSimilarStoriesStyle.js";
 
 const useStyles = makeStyles(sectionSimilarStoriesStyle);
@@ -37,12 +33,12 @@ export default function SectionSimilarStories() {
                 <Card blog>
                   <CardHeader image>
                     <a href="#pablo">
-                      <img src={blog6} alt="..." />
+                      <img src={"https://tntheall.s3.amazonaws.com/assets/img/examples/blog6.jpg"} alt="..." />
                     </a>
                     <div
                       className={classes.coloredShadow}
                       style={{
-                        backgroundImage: "url(" + blog6 + ")",
+                        backgroundImage: "url(https://tntheall.s3.amazonaws.com/assets/img/examples/blog6.jpg)",
                         opacity: "1"
                       }}
                     />
@@ -70,12 +66,12 @@ export default function SectionSimilarStories() {
                 <Card blog>
                   <CardHeader image>
                     <a href="#pablo">
-                      <img src={blog8} alt="..." />
+                      <img src={"https://tntheall.s3.amazonaws.com/assets/img/examples/blog8.jpg"} alt="..." />
                     </a>
                     <div
                       className={classes.coloredShadow}
                       style={{
-                        backgroundImage: "url(" + blog8 + ")",
+                        backgroundImage: "url(https://tntheall.s3.amazonaws.com/assets/img/examples/blog8.jpg)",
                         opacity: "1"
                       }}
                     />
@@ -102,12 +98,12 @@ export default function SectionSimilarStories() {
                 <Card blog>
                   <CardHeader image>
                     <a href="#pablo">
-                      <img src={blog7} alt="..." />
+                      <img src={"https://tntheall.s3.amazonaws.com/assets/img/examples/blog7.jpg"} alt="..." />
                     </a>
                     <div
                       className={classes.coloredShadow}
                       style={{
-                        backgroundImage: "url(" + blog7 + ")",
+                        backgroundImage: "url(https://tntheall.s3.amazonaws.com/assets/img/examples/blog7.jpg)",
                         opacity: "1"
                       }}
                     />

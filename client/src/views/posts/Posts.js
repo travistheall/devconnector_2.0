@@ -10,7 +10,6 @@ import Parallax from 'components/Parallax/Parallax.js';
 // sections for this page
 import SectionPills from './Sections/SectionPills.js';
 import CreatePost from 'forms/post/CreatePost';
-import bg10 from 'assets/img/bg10.jpg';
 import blogPostsPageStyle from 'assets/jss/material-kit-pro-react/views/blogPostsPageStyle.js';
 
 const useStyles = makeStyles(blogPostsPageStyle);
@@ -23,7 +22,7 @@ const Posts = ({ auth: { isAuthenticated, loading } }) => {
   const classes = useStyles();
   return (
     <div>
-      <Parallax image={bg10} filter="dark" small>
+      <Parallax image={"https://tntheall.s3.amazonaws.com/assets/img/bg10.jpg"} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>

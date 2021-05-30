@@ -1,7 +1,4 @@
-/*eslint-disable*/
 import React, { forwardRef, useState } from 'react';
-
-//import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
@@ -10,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 
-import GridContainer from 'components/Grid/GridContainer.js';
+
 // @material-ui/icons
 import Close from '@material-ui/icons/Close';
 
@@ -20,13 +17,11 @@ import Card from 'components/Card/Card.js';
 import CardHeader from 'components/Card/CardHeader.js';
 import CardBody from 'components/Card/CardBody.js';
 import CardAvatar from 'components/Card/CardAvatar.js';
-
+import GridContainer from 'components/Grid/GridContainer.js';
 import CardFooter from 'components/Card/CardFooter.js';
 
-import Badge from 'components/Badge/Badge.js';
 import style from 'assets/jss/material-kit-pro-react/views/componentsSections/javascriptStyles.js';
 import teamStyle from 'assets/jss/material-kit-pro-react/views/aboutUsSections/teamStyle.js';
-import SQL from 'assets/img/prog/SQL.png';
 import SqlIcon from 'views/about_me/Sections/Icon/SqlIcon';
 import Accordion from 'components/Accordion/Accordion';
 const useTeamStyles = makeStyles(teamStyle);
@@ -46,7 +41,7 @@ const SqlModal = () => {
       <div className={teamClasses.team}>
         <Card profile plain>
           <CardAvatar profile plain>
-            <img src={SQL} alt="profile-pic" className={teamClasses.img} />
+            <img src={"https://tntheall.s3.amazonaws.com/assets/img/prog/SQL.png"} alt="sql-pic" className={teamClasses.img} />
           </CardAvatar>
           <CardBody plain>
             <h4 className={classes.cardTitle}>SQL</h4>

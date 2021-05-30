@@ -6,13 +6,12 @@ import { addLike, removeLike, deletePost } from 'actions/post';
 import Card from 'components/Card/Card.js';
 import CardBody from 'components/Card/CardBody.js';
 import CardFooter from 'components/Card/CardFooter.js';
-import office2 from 'assets/img/examples/office2.jpg';
+
 import Button from 'components/CustomButtons/Button.js';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import { makeStyles } from '@material-ui/core/styles';
 import sectionPillsStyle from 'assets/jss/material-kit-pro-react/views/blogPostsSections/sectionPillsStyle.js';
 
@@ -28,7 +27,7 @@ const PubPost = ({
     return str.length > n ? str.substr(0, n - 1) + '&hellip;' : str;
   }
   return (
-    <Card raised background style={{ backgroundImage: 'url(' + office2 + ')' }}>
+    <Card raised background style={{ backgroundImage: 'url(https://tntheall.s3.amazonaws.com/assets/img/examples/office2.jpg)' }}>
       <CardBody background>
         <h6 className={classes.category}>Posted on {formatDate(date)}</h6>
         <a href={`/profile/${user}`}>

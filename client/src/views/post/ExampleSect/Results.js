@@ -6,22 +6,6 @@ import classNames from 'classnames';
 // @material-ui/icons
 import GridItem from 'components/Grid/GridItem.js';
 import sectionTextStyle from 'assets/jss/material-kit-pro-react/views/blogPostSections/sectionTextStyle.js';
-
-import foliummap from 'assets/data/foliummap.PNG';
-import elbowDistortion from 'assets/data/elbowDistortion.PNG';
-import elbowIntertia from 'assets/data/elbowintertia.PNG';
-import avgCoordDataFrame from 'assets/data/avgCoordDataFrame.PNG';
-import popClust0 from 'assets/data/popClust0.PNG';
-import popClust1 from 'assets/data/popClust1.PNG';
-import popClust2 from 'assets/data/popClust2.PNG';
-
-import foliumPop from 'assets/data/foliumPop.PNG';
-import foliumCluster from 'assets/data/foliumCluster.PNG';
-
-import MostCommonCluster0 from 'assets/data/MostCommonCluster0.PNG';
-import MostCommonCluster1 from 'assets/data/MostCommonCluster1.PNG';
-import MostCommonCluster2 from 'assets/data/MostCommonCluster2.PNG';
-
 import GridContainer from 'components/Grid/GridContainer';
 
 const useStyles = makeStyles(sectionTextStyle);
@@ -49,7 +33,7 @@ export default function Results() {
         <GridContainer justify="center">
           <GridItem xs={5} sm={5} md={5}>
             <h3 className={classes.title}>Baton Rouge Neighborhoods</h3>
-            <img src={foliummap} alt="folium map" className={imgClasses} />
+            <img src={"https://tntheall.s3.amazonaws.com/assets/data/foliummap.PNG"} alt="folium map" className={imgClasses} />
             <p>
               A map created from geospatial data of the East Baton Rouge Area
             </p>
@@ -65,7 +49,7 @@ export default function Results() {
             <h3 className={classes.title}>Pandas Data Frame Head</h3>
 
             <img
-              src={avgCoordDataFrame}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/avgCoordDataFrame.PNG"}
               alt="Pandas Data Frame Coordinates Head"
               className={imgClasses}
             />
@@ -110,7 +94,7 @@ export default function Results() {
             <h3>Elbow Method using distortion</h3>
 
             <img
-              src={elbowDistortion}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/elbowDistortion.PNG"}
               alt="eblow method using distortion"
               className={imgClasses}
             />
@@ -118,7 +102,7 @@ export default function Results() {
           <GridItem xs={5} sm={5} md={5}>
             <h3>Elbow Method using intertia</h3>
             <img
-              src={elbowIntertia}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/elbowIntertia.PNG"}
               alt="eblow method using intertia"
               className={imgClasses}
             />
@@ -128,7 +112,7 @@ export default function Results() {
           <GridItem xs={12} sm={10} md={10}>
             <h3>Baton Rouge Neighborhoods Most Common Restaurants Clusters</h3>
             <img
-              src={foliumCluster}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/foliumCluster.PNG"}
               className={imgClasses}
               alt="Map of Baton Rouge Neighborhood Clusters"
             />
@@ -159,7 +143,7 @@ export default function Results() {
         <GridItem xs={3} sm={3} md={3}>
             <h3>Cluster 0 (Red Dots) Common Categories</h3>
             <img
-              src={MostCommonCluster0}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/MostCommonCluster0.PNG"}
               alt="Cluster 0 bar graph"
               className={imgClasses}
             />
@@ -174,7 +158,7 @@ export default function Results() {
           <GridItem xs={3} sm={3} md={3}>
             <h3>Cluster 1 (South Purple Dots) Common Categories</h3>
             <img
-              src={MostCommonCluster1}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/MostCommonCluster1.PNG"}
               alt="Cluster 1 bar graph"
               className={imgClasses}
             />
@@ -189,7 +173,7 @@ export default function Results() {
           <GridItem xs={3} sm={3} md={3}>
             <h3>Cluster 2 (Greene Dots) Common Categories</h3>
             <img
-              src={MostCommonCluster2}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/MostCommonCluster2.PNG"}
               alt="Cluster 2 bar graph"
               className={imgClasses}
             />
@@ -203,7 +187,7 @@ export default function Results() {
         <GridContainer justify="center">
           <GridItem xs={12} sm={10} md={10}>
             <h3>Baton Rouge Neighborhoods Popular Restaurants Clusters</h3>
-            <img src={foliumPop} className={imgClasses} />
+            <img src={"https://tntheall.s3.amazonaws.com/assets/data/foliumPop.PNG"} className={imgClasses} />
             <p>
               A map created from K-means clustering of the East Baton Rouge
               Area. The Zillow Housing Score was added to make a Cholorpleth
@@ -232,7 +216,7 @@ export default function Results() {
             <h3>Popular Cluster 0 bar graph</h3>
 
             <img
-              src={popClust0}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/popClust0.PNG"}
               alt="Popular Cluster 0 bar graph"
               className={imgClasses}
             />
@@ -247,7 +231,7 @@ export default function Results() {
           <GridItem xs={3} sm={3} md={3}>
             <h3>Popular Cluster 1 bar graph</h3>
             <img
-              src={popClust1}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/popClust1.PNG"}
               alt="Popular Cluster 1 bar graph"
               className={imgClasses}
             />
@@ -260,7 +244,7 @@ export default function Results() {
           <GridItem xs={3} sm={3} md={3}>
             <h3>Popular Cluster 2 bar graph</h3>
             <img
-              src={popClust2}
+              src={"https://tntheall.s3.amazonaws.com/assets/data/popClust2.PNG"}
               alt="Popular Cluster 2 bar graph"
               className={imgClasses}
             />

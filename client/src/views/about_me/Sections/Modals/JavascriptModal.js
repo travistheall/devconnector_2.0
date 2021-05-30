@@ -1,8 +1,6 @@
-/*eslint-disable*/
 import React, { forwardRef, useState } from 'react';
 
 //import PropTypes from 'prop-types';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
@@ -25,7 +23,6 @@ import Accordion from 'components/Accordion/Accordion';
 import Badge from 'components/Badge/Badge.js';
 import style from 'assets/jss/material-kit-pro-react/views/componentsSections/javascriptStyles.js';
 import teamStyle from 'assets/jss/material-kit-pro-react/views/aboutUsSections/teamStyle.js';
-import ReactPic from 'assets/img/prog/ReactPic.png';
 import ReactIcon from 'views/about_me/Sections/Icon/ReactIcon';
 
 const useTeamStyles = makeStyles(teamStyle);
@@ -45,7 +42,7 @@ const JavascriptModal = () => {
       <div className={teamClasses.team}>
         <Card profile plain>
           <CardAvatar profile plain>
-            <img src={ReactPic} alt="profile-pic" className={teamClasses.img} />
+            <img src={"https://tntheall.s3.amazonaws.com/assets/img/prog/ReactPic.png"} alt="react-pic" className={teamClasses.img} />
           </CardAvatar>
           <CardBody plain>
             <h4 className={teamClasses.cardTitle}>Javascript / React</h4>

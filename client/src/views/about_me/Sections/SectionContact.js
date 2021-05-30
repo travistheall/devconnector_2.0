@@ -22,8 +22,6 @@ import Button from 'components/CustomButtons/Button.js';
 
 import { init, send } from 'emailjs-com';
 import contactsStyle from 'assets/jss/material-kit-pro-react/views/sectionsSections/contactsStyle.js';
-
-import city from 'assets/img/examples/city.jpg';
 import { setAlert } from 'actions/alert';
 import MyAlert from 'layout/MyAlert';
 
@@ -68,7 +66,7 @@ const SectionContact = ({  setAlert, ...rest }) => {
       
       <div
         className={classes.contacts + ' ' + classes.section}
-        style={{ backgroundImage: `url(${city})` }}
+        style={{ backgroundImage: 'url(https://tntheall.s3.amazonaws.com/assets/img/examples/city.jpg)' }}
       >
         <div className={classes.container}>
         <MyAlert />

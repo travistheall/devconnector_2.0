@@ -12,12 +12,7 @@ import Media from "components/Media/Media.js";
 import Button from "components/CustomButtons/Button.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import profile4 from "assets/img/faces/card-profile4-square.jpg";
-import profile1 from "assets/img/faces/card-profile1-square.jpg";
-import profile6 from "assets/img/faces/card-profile6-square.jpg";
-
 import sectionCommentsStyle from "assets/jss/material-kit-pro-react/views/blogPostSections/sectionCommentsStyle.js";
-
 const useStyles = makeStyles(sectionCommentsStyle);
 
 export default function SectionComments() {
@@ -29,7 +24,7 @@ export default function SectionComments() {
           <div>
             <h3 className={classes.title}>3 Comments</h3>
             <Media
-              avatar={profile4}
+              avatar={"https://tntheall.s3.amazonaws.com/assets/img/faces/card-profile4-square.jpg"}
               title={
                 <span>
                   Tina Andrew <small>· 7 minutes ago</small>
@@ -72,7 +67,7 @@ export default function SectionComments() {
               }
             />
             <Media
-              avatar={profile1}
+              avatar={"https://tntheall.s3.amazonaws.com/assets/img/faces/card-profile1-square.jpg"}
               title={
                 <span>
                   John Camber <small>· Yesterday</small>
@@ -115,7 +110,7 @@ export default function SectionComments() {
               innerMedias={[
                 <Media
                   key={Date.now()}
-                  avatar={profile4}
+                  avatar={"https://tntheall.s3.amazonaws.com/assets/img/faces/card-profile4-square.jpg"}
                   title={
                     <span>
                       Tina Andrew <small>· 12 Hours Ago</small>
@@ -155,7 +150,7 @@ export default function SectionComments() {
           </div>
           <h3 className={classes.title}>Post your comment</h3>
           <Media
-            avatar={profile6}
+            avatar={"https://tntheall.s3.amazonaws.com/assets/img/faces/card-profile6-square.jpg"}
             body={
               <CustomInput
                 labelText=" Write some nice stuff or nothing..."

@@ -13,8 +13,6 @@ import CardBody from 'components/Card/CardBody.js';
 import blogPostsPageStyle from 'assets/jss/material-kit-pro-react/views/blogPostsPageStyle.js';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Parallax from 'components/Parallax/Parallax.js';
-import bg10 from 'assets/img/bg10.jpg';
-
 const useStyles = makeStyles(blogPostsPageStyle);
 
 const Dcap = ({ getStudyByAbbrev, study: { study, loading }, match }) => {
@@ -25,7 +23,7 @@ const Dcap = ({ getStudyByAbbrev, study: { study, loading }, match }) => {
 
   return (
     <div className={classes.section}>
-      <Parallax image={bg10} small filter="dark">
+      <Parallax image={"https://tntheall.s3.amazonaws.com/assets/img/bg10.jpg"} small filter="dark">
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>

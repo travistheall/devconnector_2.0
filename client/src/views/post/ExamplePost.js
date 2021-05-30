@@ -1,25 +1,14 @@
-/*eslint-disable*/
-
 import React from 'react';
-// nodejs library to set properties for components
-import PropTypes from 'prop-types';
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles';
-// @material-ui/icons
-import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
 // core components
 import Parallax from 'components/Parallax/Parallax.js';
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
-import Button from 'components/CustomButtons/Button.js';
 // sections for this page
 import SectionText1 from './Sections/SectionText1.js';
-import SectionBlogInfo from './Sections/SectionBlogInfo.js';
-import SectionComments from './Sections/SectionComments.js';
-import SectionSimilarStories from './Sections/SectionSimilarStories.js';
 
 import blogPostPageStyle from 'assets/jss/material-kit-pro-react/views/blogPostPageStyle.js';
-import br from 'assets/img/br.jpg';
 const useStyles = makeStyles(blogPostPageStyle);
 
 export default function BlogPostPage() {
@@ -30,7 +19,7 @@ export default function BlogPostPage() {
   const classes = useStyles();
   return (
     <div>
-      <Parallax image={br} filter="dark">
+      <Parallax image={'https://tntheall.s3.amazonaws.com/assets/img/br.jpg'} filter="dark">
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem md={8} className={classes.textCenter}>
