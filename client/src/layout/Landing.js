@@ -16,6 +16,7 @@ const useStyles = makeStyles(presentationStyle);
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
+    console.log(isAuthenticated);
     return <Redirect to="/dashboard" />;
   }
   useEffect(() => {
