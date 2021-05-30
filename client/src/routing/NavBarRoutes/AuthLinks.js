@@ -32,13 +32,7 @@ const AuthLinks = ({ logout }) => {
       link: '/dashboard',
       icon: <ViewQuilt className={classes.icons} />,
       title: 'Dashboard',
-    },
-    {
-      link: '/profiles',
-      icon: <AccountBalance className={classes.icons} />,
-      title: 'Developers',
-    },
-    
+    }    
   ];
   return (
     <List className={classes.list + ' ' + classes.mlAuto}>
