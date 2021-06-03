@@ -68,8 +68,8 @@
     "typescript": "^4.2.4"
   },
   "engines": {
-    "node": "^4.17.0",
-    "npm": "^7.11.2"
+    "node": "4.17.0",
+    "npm": "7.11.2"
   },
   "optionalDependencies": {
     "@types/googlemaps": "3.39.6",
