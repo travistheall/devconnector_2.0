@@ -25,7 +25,7 @@ const Meals = ({
     meals.map((meal) => (
       <GridContainer key={meal['_id']}>
         <GridItem xs={6} sm={6}>
-          <MealPictures meal={meal} participant={participant} />
+          <MealPictures meal={meal} />
         </GridItem>
         <GridItem xs={6} sm={6}>
           <MealStandards meal={meal} participant={participant} />

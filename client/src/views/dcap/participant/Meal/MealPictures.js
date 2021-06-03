@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+//import React, { useEffect } from 'react';
+import React from 'react';
+//import { useState } from 'react';
 //UI Elements
 import GridContainer from 'components/Grid/GridContainer.js';
 import GridItem from 'components/Grid/GridItem.js';
-import ImageGallery from 'react-image-gallery';
+//import ImageGallery from 'react-image-gallery';
 import { makeStyles } from '@material-ui/core/styles';
 // My Sections
 import Card from 'components/Card/Card';
@@ -52,8 +53,9 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-const MealPictures = ({ participant, meal }) => {
-  const classes = useStyles();
+
+/* 
+  const MealPictures = ({ participant, meal }) => {
   const [imgs, setImgs] = useState([]);
   useEffect(() => {
     setImgs(
@@ -63,6 +65,17 @@ const MealPictures = ({ participant, meal }) => {
       }))
     );
   }, [participant, meal]);
+  <ImageGallery
+   showFullscreenButton={false}
+   showPlayButton={false}
+   startIndex={0}
+   items={imgs}
+ /> */
+
+
+const MealPictures = ({ meal }) => {
+  const classes = useStyles();
+
 
   return (
     <Card>
@@ -70,12 +83,7 @@ const MealPictures = ({ participant, meal }) => {
       <div className={classes.productContainer}>
         <GridContainer>
           <GridItem xs={12} sm={12}>
-            <ImageGallery
-              showFullscreenButton={false}
-              showPlayButton={false}
-              startIndex={0}
-              items={imgs}
-            />
+
             <p>{meal['desc']}</p>
             <ul>
               {meal['notes'].map((note, ind) => (
