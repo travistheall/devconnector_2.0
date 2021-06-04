@@ -44,12 +44,9 @@ const Landing = ({ isAuthenticated }) => {
                 <Button type="button" color="info" href="/register">
                   Sign Up
                 </Button>
-<<<<<<< HEAD
-=======
                 <Button type="button" href="/login">
                   Log in
                 </Button>
->>>>>>> parent of 6b3025b (fixed up the about me more. made it like the old profile. added modals. modals everywhere)
               </div>
             </GridItem>
           </GridContainer>
