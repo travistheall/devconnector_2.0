@@ -25,6 +25,10 @@ const SectionPills = () => {
                 tabContent: <SectionAll />
               },
               {
+                tabButton: 'Crypto',
+                tabContent: <SectionAll />
+              },
+              {
                 tabButton: 'Programming',
                 tabContent: <SectionAll />
               },
